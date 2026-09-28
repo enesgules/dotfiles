@@ -7,3 +7,9 @@ AI agent config and terminal config, symlinked into place.
 - `AGENTS.md` — global rules, linked as `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`
 - `skills/` — skills I wrote. Third-party skills are listed in `skill-lock.json` and restored by `install.sh`
 - `ghostty/config` — Ghostty terminal
+
+## Install one skill
+
+    npx skills add enesgules/dotfiles --skill github-actions-minutes
+
+- `github-actions-minutes` — measures what each GitHub Actions job really bills, then cuts the waste without losing coverage
