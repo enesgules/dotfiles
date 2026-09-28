@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Measure what a repository's GitHub Actions runs cost, per workflow and per job.
+// Measure what a repository's GitHub Actions runs cost and how long they take,
+// per workflow and per job.
 //
 // Usage: node measure.mjs OWNER/REPO [--days 14] [--out jobs.json]
 // Needs: Node 18+ and the GitHub CLI (`gh auth login`) with read access to Actions.
@@ -46,6 +47,8 @@ async function pool(items, size, fn) {
   );
   return results;
 }
+
+const [repoInfo] = await api(`repos/${repo}`);
 
 // One query per UTC day: a `created` filter returns at most 1,000 runs.
 const dates = Array.from({ length: days }, (_, i) =>
@@ -100,6 +103,7 @@ const billed = (j) => (standard(j) ? Math.ceil(minutes(j)) * multiplier(j) : 0);
 const sum = (list, f) => list.reduce((total, j) => total + f(j), 0);
 const round = (n) => Math.round(n).toLocaleString("en-US");
 const pct = (n, of) => `${((100 * n) / (of || 1)).toFixed(1)}%`;
+const quantile = (sorted, q) => sorted[Math.min(sorted.length - 1, Math.floor(q * sorted.length))];
 
 const hosted = ran.filter(standard);
 const total = sum(hosted, billed);
@@ -107,8 +111,11 @@ const raw = sum(hosted, (j) => minutes(j) * multiplier(j));
 const other = ran.filter((j) => !standard(j));
 
 console.log(`# GitHub Actions usage: ${repo}, last ${days} days\n`);
+if (!repoInfo.private) {
+  console.log("> Public repository: standard hosted runners are free here. Read the minutes below as runner time, not cost.\n");
+}
 console.log(`- Runs: ${runs.length}; jobs that ran: ${ran.length}`);
-console.log(`- Billed minutes (standard hosted runners): **${round(total)}** (about ${round((total * 30) / days)} a month)`);
+console.log(`- Billed minutes (standard hosted runners, Linux-minute equivalents): **${round(total)}** (about ${round((total * 30) / days)} a month)`);
 console.log(`- Rounding each job up to a whole minute adds ${round(total - raw)} (${pct(total - raw, total)})`);
 console.log(`- Cancelled jobs: ${round(sum(hosted.filter((j) => j.conclusion === "cancelled"), billed))} billed minutes; failed jobs: ${round(sum(hosted.filter((j) => j.conclusion === "failure"), billed))}`);
 if (other.length) {
@@ -116,11 +123,19 @@ if (other.length) {
   console.log(`- Other runner groups (${groups}): ${round(sum(other, minutes))} minutes, not in the total. Self-hosted minutes are free; larger runners bill at their own rate.`);
 }
 
-function table(title, key, limit) {
+const runsOf = new Map();
+for (const r of runs) {
+  const k = `${r.name} / ${r.event}`;
+  runsOf.set(k, (runsOf.get(k) ?? 0) + 1);
+}
+
+// "Ran in" is the share of its workflow's runs (same event) that ran the job:
+// near 100% on pull requests means its path filter matches almost everything.
+function table(title, key, limit, ranIn) {
   const rows = new Map();
   for (const j of hosted) {
     const k = key(j);
-    const row = rows.get(k) ?? { billed: 0, raw: 0, count: 0, runs: new Set() };
+    const row = rows.get(k) ?? { billed: 0, raw: 0, count: 0, runs: new Set(), of: `${j.workflow} / ${j.event}` };
     row.billed += billed(j);
     row.raw += minutes(j);
     row.count++;
@@ -128,35 +143,31 @@ function table(title, key, limit) {
     rows.set(k, row);
   }
   console.log(`\n## ${title}\n`);
-  console.log("| Billed | Share | Jobs | Avg min | Name |\n|---:|---:|---:|---:|---|");
+  console.log(ranIn
+    ? "| Billed | Share | Jobs | Avg min | Ran in | Name |\n|---:|---:|---:|---:|---:|---|"
+    : "| Billed | Share | Jobs | Avg min | Name |\n|---:|---:|---:|---:|---|");
   for (const [k, r] of [...rows].sort((a, b) => b[1].billed - a[1].billed).slice(0, limit)) {
-    console.log(`| ${round(r.billed)} | ${pct(r.billed, total)} | ${r.count} | ${(r.raw / r.count).toFixed(1)} | ${k} |`);
+    const share = ranIn ? ` ${pct(r.runs.size, runsOf.get(r.of))} |` : "";
+    console.log(`| ${round(r.billed)} | ${pct(r.billed, total)} | ${r.count} | ${(r.raw / r.count).toFixed(1)} |${share} ${k} |`);
   }
 }
 
-table("By workflow and event", (j) => `${j.workflow} / ${j.event}`, 20);
+table("By workflow and event", (j) => `${j.workflow} / ${j.event}`, 20, false);
+table("Top jobs", (j) => `${j.workflow} / ${j.event} :: ${j.job.replace(/\s*\(.*\)$/, " (matrix)")}`, 30, true);
 
-// "Ran in" shows how often a job ran in its workflow's runs for that event: a
-// job near 100% on pull requests has a path filter that matches almost everything.
-const runsOf = new Map();
-for (const r of runs) {
+// Wall-clock time of successful runs, first attempt start to last update.
+const durations = new Map();
+for (const r of runs.filter((r) => r.conclusion === "success" && r.run_started_at)) {
   const k = `${r.name} / ${r.event}`;
-  runsOf.set(k, (runsOf.get(k) ?? 0) + 1);
+  const list = durations.get(k) ?? [];
+  list.push((new Date(r.updated_at) - new Date(r.run_started_at)) / 6e4);
+  durations.set(k, list);
 }
-const byJob = new Map();
-for (const j of hosted) {
-  const k = `${j.workflow} / ${j.event} :: ${j.job.replace(/\s*\(.*\)$/, " (matrix)")}`;
-  const row = byJob.get(k) ?? { billed: 0, raw: 0, count: 0, runs: new Set(), of: `${j.workflow} / ${j.event}` };
-  row.billed += billed(j);
-  row.raw += minutes(j);
-  row.count++;
-  row.runs.add(j.run);
-  byJob.set(k, row);
-}
-console.log("\n## Top jobs\n");
-console.log("| Billed | Share | Jobs | Avg min | Ran in | Job |\n|---:|---:|---:|---:|---:|---|");
-for (const [k, r] of [...byJob].sort((a, b) => b[1].billed - a[1].billed).slice(0, 30)) {
-  console.log(`| ${round(r.billed)} | ${pct(r.billed, total)} | ${r.count} | ${(r.raw / r.count).toFixed(1)} | ${pct(r.runs.size, runsOf.get(r.of))} | ${k} |`);
+console.log("\n## Wall-clock time of successful runs\n");
+console.log("| Runs | Median min | p90 min | Workflow / event |\n|---:|---:|---:|---|");
+for (const [k, list] of [...durations].sort((a, b) => b[1].length - a[1].length).slice(0, 15)) {
+  const sorted = list.sort((a, b) => a - b);
+  console.log(`| ${sorted.length} | ${quantile(sorted, 0.5).toFixed(1)} | ${quantile(sorted, 0.9).toFixed(1)} | ${k} |`);
 }
 
 const prRuns = new Map();
@@ -166,5 +177,5 @@ for (const r of runs.filter((r) => r.event === "pull_request")) {
 }
 if (prRuns.size) {
   const counts = [...prRuns.values()].sort((a, b) => a - b);
-  console.log(`\n## Pull request churn\n\n- Runs per branch and workflow: median ${counts[counts.length >> 1]}, max ${counts.at(-1)} (${prRuns.size} branch/workflow pairs)`);
+  console.log(`\n## Pull request churn\n\n- Runs per branch and workflow: median ${quantile(counts, 0.5)}, max ${counts.at(-1)} (${prRuns.size} branch/workflow pairs)`);
 }

@@ -10,6 +10,6 @@ AI agent config and terminal config, symlinked into place.
 
 ## Install one skill
 
-    npx skills add enesgules/dotfiles --skill github-actions-minutes
+    npx skills add enesgules/dotfiles --skill optimise-github-actions
 
-- `github-actions-minutes` — measures what each GitHub Actions job really bills, then cuts the waste without losing coverage
+- `optimise-github-actions` — measures what each GitHub Actions job really bills and how long CI takes, then cuts the waste without losing coverage
