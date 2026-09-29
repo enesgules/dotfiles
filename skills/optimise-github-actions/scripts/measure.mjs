@@ -11,9 +11,7 @@
 // listed apart, because they are either free or billed at their own rate.
 import { execFile } from "node:child_process";
 import { writeFileSync } from "node:fs";
-import { promisify } from "node:util";
 
-const exec = promisify(execFile);
 const args = process.argv.slice(2);
 const option = (name, fallback) => {
   const i = args.indexOf(`--${name}`);
@@ -27,12 +25,42 @@ if (!repo) {
 const days = Number(option("days", 14));
 const outFile = option("out", "");
 
-async function api(path) {
-  const { stdout } = await exec("gh", ["api", "--paginate", "--slurp", path], {
-    maxBuffer: 1 << 28,
+function gh(ghArgs, input) {
+  return new Promise((resolve, reject) => {
+    const child = execFile("gh", ghArgs, { maxBuffer: 1 << 28 }, (error, stdout, stderr) =>
+      error ? reject(Object.assign(error, { stderr })) : resolve(stdout),
+    );
+    if (input) child.stdin.end(input);
   });
-  return JSON.parse(stdout);
 }
+
+// Retries transient 5xx errors and waits out rate limits instead of failing.
+async function retry(call, resource) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await call();
+    } catch (e) {
+      if (/rate limit/i.test(e.stderr ?? "")) {
+        // Secondary limits leave `remaining` above zero and clear within a minute.
+        const { remaining, reset } = JSON.parse(await gh(["api", "rate_limit"])).resources[resource];
+        const until = remaining > 0 ? Date.now() + 60_000 : reset * 1000 + 5000;
+        console.error(`  ${resource} rate limited (${e.stderr.trim().split("\n")[0]}); waiting until ${new Date(until).toISOString()}`);
+        await new Promise((r) => setTimeout(r, Math.max(0, until - Date.now())));
+        continue;
+      }
+      if (attempt >= 5) throw e;
+      await new Promise((r) => setTimeout(r, 2000 * attempt));
+    }
+  }
+}
+
+const api = (path) => retry(async () => JSON.parse(await gh(["api", "--paginate", "--slurp", path])), "core");
+const graphql = (query, variables) =>
+  retry(async () => {
+    const res = JSON.parse(await gh(["api", "graphql", "--input", "-"], JSON.stringify({ query, variables })));
+    if (res.errors) throw Object.assign(new Error(JSON.stringify(res.errors)), { stderr: JSON.stringify(res.errors) });
+    return res.data;
+  }, "graphql");
 
 async function pool(items, size, fn) {
   const results = [];
@@ -63,33 +91,74 @@ const runs = (
 ).flat();
 console.error(`${runs.length} runs in ${days} days; reading jobs...`);
 
+// Jobs come from GraphQL, 50 runs per query, on a rate limit separate from REST.
+// Each job is a check run in the run's check suite; checkType ALL keeps the
+// jobs of earlier attempts, which are billed too.
+const PAGE = "nodes { databaseId name conclusion startedAt completedAt } pageInfo { hasNextPage endCursor }";
+const SUITES = `query($ids: [ID!]!) {
+  nodes(ids: $ids) {
+    ... on CheckSuite {
+      id
+      checkRuns(first: 100, filterBy: { checkType: ALL }) { ${PAGE} }
+    }
+  }
+}`;
+const MORE = `query($id: ID!, $after: String) {
+  node(id: $id) {
+    ... on CheckSuite {
+      checkRuns(first: 100, after: $after, filterBy: { checkType: ALL }) { ${PAGE} }
+    }
+  }
+}`;
+const completed = runs.filter((r) => r.status === "completed" && r.check_suite_node_id);
+const batches = Array.from({ length: Math.ceil(completed.length / 50) }, (_, i) => completed.slice(i * 50, i * 50 + 50));
 let done = 0;
-const jobs = (
-  await pool(runs, 8, async (run) => {
-    // Earlier attempts are billed too, so read every attempt of a rerun.
-    const attempts = await Promise.all(
-      Array.from({ length: run.run_attempt ?? 1 }, (_, a) =>
-        api(`repos/${repo}/actions/runs/${run.id}/attempts/${a + 1}/jobs?per_page=100`),
-      ),
-    );
-    if (++done % 50 === 0) console.error(`  ${done}/${runs.length} runs`);
-    return attempts
-      .flat()
-      .flatMap((page) => page.jobs)
-      .map((job) => ({
-        run: run.id,
-        workflow: run.name,
-        event: run.event,
-        branch: run.head_branch,
-        job: job.name,
-        conclusion: job.conclusion,
-        labels: job.labels,
-        runnerGroup: job.runner_group_name,
-        startedAt: job.started_at,
-        completedAt: job.completed_at,
-      }));
-  })
-).flat();
+const checkRuns = new Map();
+await pool(batches, 4, async (batch) => {
+  const { nodes } = await graphql(SUITES, { ids: batch.map((r) => r.check_suite_node_id) });
+  for (const suite of nodes.filter(Boolean)) {
+    const list = [...suite.checkRuns.nodes];
+    for (let page = suite.checkRuns.pageInfo; page.hasNextPage; ) {
+      const { node } = await graphql(MORE, { id: suite.id, after: page.endCursor });
+      list.push(...node.checkRuns.nodes);
+      page = node.checkRuns.pageInfo;
+    }
+    checkRuns.set(suite.id, list);
+  }
+  done += batch.length;
+  console.error(`  ${done}/${completed.length} runs`);
+});
+
+const jobs = completed.flatMap((run) =>
+  (checkRuns.get(run.check_suite_node_id) ?? []).map((c) => ({
+    id: c.databaseId,
+    run: run.id,
+    workflow: run.name,
+    event: run.event,
+    branch: run.head_branch,
+    job: c.name,
+    conclusion: c.conclusion?.toLowerCase() ?? null,
+    startedAt: c.startedAt,
+    completedAt: c.completedAt,
+  })),
+);
+
+// GraphQL has no runner labels, so read them over REST from one job that ran
+// per workflow and job name.
+const samples = new Map();
+for (const j of jobs) {
+  const k = `${j.workflow}\0${j.job}`;
+  if (j.conclusion !== "skipped" && j.startedAt && !samples.has(k)) samples.set(k, j);
+}
+console.error(`reading runner labels for ${samples.size} distinct jobs...`);
+const runners = new Map(
+  await pool([...samples], 4, async ([k, sample]) => {
+    const pages = await api(`repos/${repo}/actions/runs/${sample.run}/jobs?per_page=100&filter=all`);
+    const job = pages.flatMap((page) => page.jobs).find((j) => j.id === sample.id);
+    return [k, { labels: job?.labels ?? [], runnerGroup: job?.runner_group_name ?? null }];
+  }),
+);
+for (const j of jobs) Object.assign(j, runners.get(`${j.workflow}\0${j.job}`) ?? { labels: [], runnerGroup: null });
 if (outFile) writeFileSync(outFile, JSON.stringify(jobs));
 
 const minutes = (j) => (new Date(j.completedAt) - new Date(j.startedAt)) / 6e4;
