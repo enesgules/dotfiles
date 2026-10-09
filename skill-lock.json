@@ -360,6 +360,60 @@
       "skillFolderHash": "7b04ed645018056af8396b93e2f31cd2efbcd358",
       "installedAt": "2026-08-24T07:47:03.371Z",
       "updatedAt": "2026-08-24T07:47:03.371Z"
+    },
+    "before-and-after": {
+      "source": "michaelshimeles/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/michaelshimeles/skills.git",
+      "skillPath": "before-and-after/SKILL.md",
+      "skillFolderHash": "f0788ffd016462d168e3f651cb60b21eb7dbadf2",
+      "installedAt": "2026-10-08T07:31:42.874Z",
+      "updatedAt": "2026-10-08T07:31:42.874Z"
+    },
+    "code-structure": {
+      "source": "michaelshimeles/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/michaelshimeles/skills.git",
+      "skillPath": "code-structure/SKILL.md",
+      "skillFolderHash": "7b3095c6e20946772a3acecf7c70a83b8ed94bca",
+      "installedAt": "2026-10-08T07:31:42.877Z",
+      "updatedAt": "2026-10-08T07:31:42.877Z"
+    },
+    "evidence-driven-testing": {
+      "source": "michaelshimeles/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/michaelshimeles/skills.git",
+      "skillPath": "evidence-driven-testing/SKILL.md",
+      "skillFolderHash": "2a9321d859193c56b159390cf2f080a3b93ca555",
+      "installedAt": "2026-10-08T07:31:42.877Z",
+      "updatedAt": "2026-10-08T07:31:42.877Z"
+    },
+    "new-feature": {
+      "source": "michaelshimeles/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/michaelshimeles/skills.git",
+      "skillPath": "new-feature/SKILL.md",
+      "skillFolderHash": "84241d7cf0dfa29e7de1ecdd4769afb684145d0d",
+      "installedAt": "2026-10-08T07:31:42.878Z",
+      "updatedAt": "2026-10-08T07:31:42.878Z"
+    },
+    "context7-mcp": {
+      "source": "upstash/context7",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/upstash/context7.git",
+      "skillPath": "skills/context7-mcp/SKILL.md",
+      "skillFolderHash": "92080dfde0cd06366b451bb4bb567c4d4cb64e68",
+      "installedAt": "2026-10-09T14:29:56.649Z",
+      "updatedAt": "2026-10-09T14:30:42.076Z"
+    },
+    "find-docs": {
+      "source": "upstash/context7",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/upstash/context7.git",
+      "skillPath": "skills/find-docs/SKILL.md",
+      "skillFolderHash": "b635cd66f1414befd36d18646561398de2ddab54",
+      "installedAt": "2026-10-09T14:29:56.663Z",
+      "updatedAt": "2026-10-09T14:30:42.077Z"
     }
   },
   "dismissed": {
@@ -367,19 +421,18 @@
   },
   "lastSelectedAgents": [
     "amp",
-    "antigravity",
-    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
-    "deepagents",
+    "droid",
     "gemini-cli",
     "github-copilot",
+    "kilo",
     "kimi-code-cli",
     "opencode",
+    "pi",
     "warp",
     "zed",
-    "pi",
     "claude-code"
   ]
 }
