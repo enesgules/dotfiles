@@ -9,3 +9,4 @@
 - Make architectural decisions for the long term. Do not accept a temporary workaround that is intended to be replaced later.
 - Add tests only when they protect meaningful behavior, edge cases, or known failures. Do not add tests just because code changed. Tests must not merely repeat the implementation, assert changed constants, or copy production logic into mocks. Use existing tests and relevant checks when a new test adds no distinct regression coverage.
 - Only report to me in ASD-STE100 Simplified Technical English.
+- My interactive shell is fish 4. Write every command I will paste or run myself in fish syntax: `env VAR=x cmd` or `set -x VAR x` (not `VAR=x cmd` or `export`), no heredocs. Put each command in its own code block.
