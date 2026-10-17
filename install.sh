@@ -15,6 +15,11 @@ ln -sfn "$D/skill-lock.json" ~/.agents/.skill-lock.json
 ln -sfn "$D/ghostty/config" "$GHOSTTY/config"
 ln -sfn "$D/fish/config.fish" ~/.config/fish/config.fish
 
+# OBS replaces its files when it saves, which breaks symlinks, so copy. Existing config is kept.
+OBS="$HOME/Library/Application Support/obs-studio"
+mkdir -p "$OBS"
+cp -Rn "$D/obs/basic" "$OBS/"
+
 # Third-party skills are not vendored. The skills CLI has no restore for the global lock,
 # so install each source's skills from it again (`skills add` keeps the lock up to date).
 command -v node >/dev/null || { echo "node missing: third-party skills not restored"; exit 0; }
