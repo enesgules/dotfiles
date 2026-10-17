@@ -10,6 +10,10 @@ AI agent config and terminal config, symlinked into place.
 - `install-cloud-skills.sh` — installs a focused set of the dotfiles and third-party skills in Codex Cloud. Run it from the cloud environment's install script after checking out this repository.
 - `ghostty/config` — Ghostty terminal
 - `fish/config.fish` — fish shell, linked as `~/.config/fish/config.fish`
+- `obs/` — OBS recording setup: 2560x1440 at 60 fps, mic chain Gain → EQ → Compressor → Limiter, "full cam" and "screen + cam" scenes, hotkeys Ctrl+Alt+R record, Ctrl+Alt+P pause, Ctrl+Alt+1/2 scenes. `install.sh` copies it into OBS and keeps an existing config. `obs/setup_rounded_cam.py` makes the rounded camera mask and lays out both scenes; run it with OBS closed. After a change in OBS, quit OBS and copy the files back:
+
+      cp ~/Library/Application\ Support/obs-studio/basic/profiles/Untitled/basic.ini ~/dotfiles/obs/basic/profiles/Untitled/
+      cp ~/Library/Application\ Support/obs-studio/basic/scenes/Untitled.json ~/dotfiles/obs/basic/scenes/
 
 ## Install one skill
 
