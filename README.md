@@ -7,6 +7,7 @@ AI agent config and terminal config, symlinked into place.
 - `AGENTS.md` — global rules, linked as `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`
 - `skills/` — skills I wrote. Third-party skills (also the Context7 ones from `upstash/context7`) are listed in `skill-lock.json` and installed again by `install.sh`. Add one with `npx skills add <owner/repo> -g -a claude-code codex -s <skill>`
 - `skills/personal-repos/` — shared guidance for the personal cloud environment and its repository-specific variable names. Project skills stay in their project repositories.
+- `skills/x-post-drafting/` — drafts X posts for @abdushbag (value, build-in-public, launch, thread). The agent does not publish.
 - `install-cloud-skills.sh` — installs a focused set of the dotfiles and third-party skills in Codex Cloud. Run it from the cloud environment's install script after checking out this repository.
 - `ghostty/config` — Ghostty terminal
 - `fish/config.fish` — fish shell, linked as `~/.config/fish/config.fish`
