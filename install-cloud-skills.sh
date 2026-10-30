@@ -2,7 +2,7 @@
 # Install a small set of personal skills in a Codex Cloud environment.
 set -eu
 
-npx -y skills add enesgules/dotfiles -g -y -a codex -s personal-repos optimise-github-actions x-post-drafting
+npx -y skills add enesgules/dotfiles -g -y -a codex -s optimise-github-actions x-post-drafting
 npx -y skills add cursor/plugins -g -y -a codex -s typescript-best-practices unslop
 npx -y skills add vercel-labs/agent-skills -g -y -a codex -s vercel-react-best-practices
 npx -y skills add supabase/agent-skills -g -y -a codex -s supabase-postgres-best-practices
