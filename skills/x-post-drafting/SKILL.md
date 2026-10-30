@@ -23,7 +23,7 @@ Write in the language of the request. Keep product names as the user writes them
 
 This is where drafts fail most. A post should read like a dev texting a friend about something they made, not like a product page.
 
-- Casual and plain. Lowercase bullets are fine. A small slip in grammar is fine. One emoji at most, at the end.
+- Casual and plain. Lowercase bullets, no periods. A small slip in grammar is fine. One emoji, usually at the end: 👀 for "look at this", 😭 or 🙃 for honest pain, 👇 when more is in the replies.
 - Say what the reader gets, in the words the reader would use. Never use the product's internal terms, your own spec's labels, or a list of its mechanics.
 - No clever lines: no wordplay, no meta jokes ("this tweet was written by..."), no setup-punchline hooks. Clever reads as trying.
 - No ad words, no model words: delve, leverage, unlock, seamless, empower, supercharge, game-changer, robust, "excited to share", "let's dive in", "here's the thing".
@@ -38,9 +38,11 @@ Every post needs one topic and one goal:
 - **Value.** A short guide the reader can use today.
 - **Build in public.** One public goal, and the messy work toward it.
 - **Launch.** A product, feature, or repo that is ready to show.
+- **Data.** The user measured or compared something and has the numbers.
+- **Question.** An honest question to followers, with a real number behind it.
 - **Thread.** A how-to that starts from an objection.
 
-State the topic and goal in one line. If you inferred either, say so. If you cannot infer the goal, ask once, name the four goals, and stop.
+State the topic and goal in one line. If you inferred either, say so. If you cannot infer the goal, ask once, name the goals, and stop.
 
 Collect the facts the post stands on: what it does, a before and after or output, a link, how to get it, and any number the user wants public. For a launch, ask whether it is open source. If the user pastes someone else's post to remix, keep the shape and write new lines.
 
@@ -48,21 +50,39 @@ Collect the facts the post stands on: what it does, a before and after or output
 
 Use one format for every variant, so the user compares hooks, not structures.
 
-**Launch.** The first line is a plain belief about what the reader, or their agent, should be able to do. Then the name, then three short bullets of what they get.
+**Launch.** The first line is a flat fact about a pain every reader has seen, or a plain belief about what their agent should be able to do. Then the name, an optional one-line "what it is", and three bullets.
 
 ```
-{what the reader or their agent should be able to do}
+{Every X has the same Y.} or {Your agent should be able to Z}
 
-Introducing {name}
+Introducing {name}   (or: So I built {name}, {what it is})
 
-- {concrete thing they get, a number if the user gave one}
-- {concrete thing they get}
-- {how easy it is to start, e.g. the install command}
+{optional: one line, what it does}
 
-It's also open source 👀
+- {a count or a list of names: "207 presets", "E2B, Daytona, Vercel and more"}
+- {how little work: "switch in 1 line", "React, Vue, Svelte or plain HTML"}
+- {the agent angle: "or ask your agent to add it", "includes an agent skill"}
+
+and it's open source 👀
 ```
 
-Keep the open-source line only when it is true. Put the link last, or tell the user to put it in the first reply. Example of the tone, for an invented product: "your agent should be able to read any PDF / Introducing pdfkit / - 40 parsers / - works with tables and scans / - one npm install".
+The bullets are things you can count or name, never adjectives. Keep the open-source line only when it is true; "{n} free, all customizable 👀" is the same close for a free tier. Always attach a video or image of the thing working. Example, for an invented product: "Every PDF parser breaks on tables / Introducing pdfkit / - 40 file types / - tables and scans in 1 call / - includes an agent skill for setup / and it's open source 👀".
+
+**Data.** Name what was measured and how many. Then a ranked list with the real numbers. End by pointing at the rest.
+
+```
+I benchmarked {n} {things} for {use}.
+
+{metric}, best to worst:
+1. {name}: {number}
+2. {name}: {number}
+
+There's more below 👇
+```
+
+Use only numbers the user gave. Tag the tools in the list: their teams often repost.
+
+**Question.** One honest question, a real number that makes it worth answering, and nothing else. Example: "Should I apply to YC with {product}? It's been growing: {before} → {after}". Keep it a real question the author wants answered, never bait.
 
 **Value.** Open with the result and a promise of proof. Then numbered points. Each point: the rule, the hard way you learned it (with a number if the user gave one), why it works, and a short list of what to do. End with the point that matters most.
 
@@ -78,7 +98,7 @@ So:
 2. ...
 ```
 
-**Build in public.** Name the one goal. Show today's step, what happened, and the next step. Add a real result only if the user gave one.
+**Build in public.** Run it as a numbered series with one public goal: "day {n} of {goal}", then "today:", then one lowercase paragraph with one concrete detail and why. Tag the person or company it is for. Add a real result only if the user gave one.
 
 **Thread.** Open with an objection the user has heard, reject it, and promise the how-to:
 
@@ -93,6 +113,10 @@ BS. Here is how.
 Use a softer rejection when "BS" does not fit. Then one short post per real step, numbered. No filler steps.
 
 Under every variant, add one line: the image or short video to attach, and what it must show. On X, a post with a clear visual gets read.
+
+Links and calls to action go in the first reply, not the post, unless the product's domain is its name (for example "So I built gradients.sh"). Tag the tools, companies, or people the post names.
+
+What gets few views: a vague teaser with nothing to see ("I have a cool idea..."), a sponsor shoutout, a fragment that only makes sense in a thread. Do not draft these as standalone posts.
 
 ## 4. Write 2 or 3 variants
 
@@ -123,7 +147,9 @@ Only when the user asks: launch angles for other people to post, posting mix, pr
 
 ## Sources
 
-- @leodev, launch post shape and voice (dithercn): https://x.com/leodev
+- @leodev, launch posts (gradients.sh 37k views, dithercn 33k): https://x.com/leodev/status/2112514949167907029, https://x.com/leodev/status/2114688757404447027
+- @leodev, data post: https://x.com/leodev/status/2113363220190945638
+- @leodev, build-in-public series: https://x.com/leodev/status/2112942644196516135
 - @leodev, value post shape, structure, no AI replies: https://x.com/leodev/status/2111230753812132150
 - @robj3d3, 0 to 32k playbook (profile, one goal, 40/30/20/10 mix, remix): https://x.com/robj3d3/status/1991098548914446382
 - @0xfJuan, How to Engineer Virality on X: https://x.com/0xfJuan/status/2114746175026798821
