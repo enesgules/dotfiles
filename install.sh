@@ -15,6 +15,11 @@ ln -sfn "$D/skill-lock.json" ~/.agents/.skill-lock.json
 ln -sfn "$D/ghostty/config" "$GHOSTTY/config"
 ln -sfn "$D/fish/config.fish" ~/.config/fish/config.fish
 
+mkdir -p ~/.local/bin
+for cmd in x-post x-thread x-media; do
+  ln -sfn "$D/scripts/$cmd" ~/.local/bin/"$cmd"
+done
+
 # OBS replaces its files when it saves, which breaks symlinks, so copy. Existing config is kept.
 OBS="$HOME/Library/Application Support/obs-studio"
 mkdir -p "$OBS"

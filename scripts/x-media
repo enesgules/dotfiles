@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+# Download images and videos from one public X post. No API key.
+set -euo pipefail
+
+if [[ -L "$0" ]]; then
+  _target="$(readlink "$0")"
+  case "$_target" in
+    /*) _self="$_target" ;;
+    *) _self="$(cd "$(dirname "$0")" && pwd)/$_target" ;;
+  esac
+else
+  _self="$0"
+fi
+# shellcheck disable=SC1091
+. "$(cd "$(dirname "$_self")" && pwd)/x-common.sh"
+
+x_need_jq
+
+if [[ $# -lt 1 || $# -gt 2 || "$1" == "--help" || "$1" == "-h" ]]; then
+  if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+    echo "usage: x-media <url-or-id> [dir]"
+    exit 0
+  fi
+  x_die "usage: x-media <url-or-id> [dir]"
+fi
+
+x_parse "$1"
+dir="${2:-./x-media/${X_ID}}"
+case "$dir" in
+  -*) x_die "directory must not start with -" ;;
+esac
+
+body="$(mktemp)"
+trap 'rm -f "$body"' EXIT
+x_fetch > "$body"
+urls="$(x_emit urls < "$body")"
+rm -f "$body"
+if [[ -z "$urls" ]]; then
+  echo "no images or videos"
+  exit 0
+fi
+
+mkdir -p "$dir"
+list="$(mktemp)"
+trap 'rm -f "$body" "$list"' EXIT
+printf '%s\n' "$urls" > "$list"
+i=0
+while IFS= read -r url; do
+  [[ -n "$url" ]] || continue
+  i=$((i + 1))
+  path="${url%%\?*}"
+  base="${path##*/}"
+  ext="${base##*.}"
+  if [[ "$base" == "$ext" ]]; then
+    ext="bin"
+  fi
+  ext="${ext%%:*}"
+  ext="$(printf '%s' "$ext" | tr '[:upper:]' '[:lower:]')"
+  case "$ext" in
+    jpg|jpeg|png|gif|webp|mp4|mov|m4v) ;;
+    *)
+      case "$url" in
+        *format=png*) ext="png" ;;
+        *format=webp*) ext="webp" ;;
+        *format=jpg*|*format=jpeg*) ext="jpg" ;;
+        *) ext="bin" ;;
+      esac
+      ;;
+  esac
+  file="$(printf '%s/%02d.%s' "$dir" "$i" "$ext")"
+  if ! curl -fsSL -A 'dotfiles-x' --max-time 120 -o "$file" "$url"; then
+    x_die "download failed: $url"
+  fi
+  printf '%s\n' "$file"
+done < "$list"
+rm -f "$list"

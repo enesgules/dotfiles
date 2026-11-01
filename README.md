@@ -7,7 +7,15 @@ AI agent config and terminal config, symlinked into place.
 - `AGENTS.md` — global rules, linked as `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`
 - `skills/` — skills I wrote. Third-party skills (also the Context7 ones from `upstash/context7`) are listed in `skill-lock.json` and installed again by `install.sh`. Add one with `npx skills add <owner/repo> -g -a claude-code codex -s <skill>`
 - `skills/x-post-drafting/` — drafts X posts for developers and indie builders (value, build-in-public, launch, thread). The agent does not publish.
-- `install-cloud-skills.sh` — installs a focused set of the dotfiles and third-party skills in Codex Cloud. Run it from the cloud environment's install script after checking out this repository.
+- `install-cloud-skills.sh` — installs a focused set of the dotfiles and third-party skills in Codex Cloud. Run it from the cloud environment's install script after checking out this repository. It also links `scripts/x-post`, `scripts/x-thread`, and `scripts/x-media` into `~/.local/bin`.
+- `scripts/` — read a public X post, its reply chain, or its media. No API key. Needs `curl` and `jq`. `install.sh` links the scripts into `~/.local/bin` (fish already adds that directory to `PATH`).
+
+      x-post https://x.com/poteto/status/2116580481236115933
+      x-post --json https://x.com/i/status/2116580481236115933
+      x-thread https://x.com/poteto/status/2116580481236115933?s=20
+      x-media https://x.com/poteto/status/2116580481236115933 ./x-media/2116580481236115933
+
+  `x-post` prints the author, date, full text, likes, reposts, bookmarks, views, media URLs, a quoted post, and long-form article text when fxtwitter returns it. `--json` prints that same data as JSON. `x-thread` walks `replying_to` up to the first post and prints the posts in order. `x-media` saves images and videos. The default folder is `./x-media/<id>/`. A bad URL, a missing post, or a rate limit exits non-zero.
 - `ghostty/config` — Ghostty terminal
 - `fish/config.fish` — fish shell, linked as `~/.config/fish/config.fish`
 - `obs/` — OBS recording setup: 2560x1440 at 60 fps, mic chain Gain → EQ → Compressor → Limiter, "full cam" and "screen + cam" scenes, hotkeys Ctrl+Alt+R record, Ctrl+Alt+P pause, Ctrl+Alt+1/2 scenes. `install.sh` copies it into OBS and keeps an existing config. `obs/setup_rounded_cam.py` makes the rounded camera mask and lays out both scenes; run it with OBS closed. After a change in OBS, quit OBS and copy the files back:

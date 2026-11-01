@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Print one public X post from fxtwitter. No API key.
+set -euo pipefail
+
+# Follow one symlink so the helper is found after install links the script into ~/.local/bin.
+if [[ -L "$0" ]]; then
+  _target="$(readlink "$0")"
+  case "$_target" in
+    /*) _self="$_target" ;;
+    *) _self="$(cd "$(dirname "$0")" && pwd)/$_target" ;;
+  esac
+else
+  _self="$0"
+fi
+# shellcheck disable=SC1091
+. "$(cd "$(dirname "$_self")" && pwd)/x-common.sh"
+
+x_need_jq
+
+mode="md"
+target=""
+for arg in "$@"; do
+  case "$arg" in
+    --json) mode="json" ;;
+    --help|-h)
+      echo "usage: x-post [--json] <url-or-id>"
+      exit 0
+      ;;
+    --) ;;
+    -*) x_die "unknown option: $arg" ;;
+    *)
+      [[ -z "$target" ]] || x_die "too many arguments"
+      target="$arg"
+      ;;
+  esac
+done
+[[ -n "$target" ]] || x_die "usage: x-post [--json] <url-or-id>"
+
+x_parse "$target"
+x_fetch | x_emit "$mode"

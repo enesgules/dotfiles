@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# Print a public X conversation from the post up to the first post. No API key.
+set -euo pipefail
+
+if [[ -L "$0" ]]; then
+  _target="$(readlink "$0")"
+  case "$_target" in
+    /*) _self="$_target" ;;
+    *) _self="$(cd "$(dirname "$0")" && pwd)/$_target" ;;
+  esac
+else
+  _self="$0"
+fi
+# shellcheck disable=SC1091
+. "$(cd "$(dirname "$_self")" && pwd)/x-common.sh"
+
+x_need_jq
+
+if [[ $# -ne 1 || "$1" == "--help" || "$1" == "-h" ]]; then
+  if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+    echo "usage: x-thread <url-or-id>"
+    exit 0
+  fi
+  x_die "usage: x-thread <url-or-id>"
+fi
+
+x_parse "$1"
+work="$(mktemp -d)"
+trap 'rm -rf "$work"' EXIT
+
+n=0
+seen=" "
+while [[ -n "$X_ID" ]]; do
+  case "$seen" in
+    *" $X_ID "*) x_die "reply loop at $X_ID" ;;
+  esac
+  seen="$seen$X_ID "
+  n=$((n + 1))
+  [[ "$n" -le 50 ]] || x_die "stopped after 50 posts"
+  x_fetch > "$work/$(printf '%02d' "$n").json"
+  X_ID="$(jq -r '.tweet.replying_to_status // empty' "$work/$(printf '%02d' "$n").json")"
+  X_USER="$(jq -r '.tweet.replying_to // empty' "$work/$(printf '%02d' "$n").json")"
+done
+
+i=$n
+while [[ "$i" -ge 1 ]]; do
+  [[ "$i" -eq "$n" ]] || printf '\n---\n\n'
+  x_emit md < "$work/$(printf '%02d' "$i").json"
+  i=$((i - 1))
+done

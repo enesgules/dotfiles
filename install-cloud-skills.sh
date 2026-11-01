@@ -2,6 +2,12 @@
 # Install a small set of personal skills in a Codex Cloud environment.
 set -eu
 
+D="$(cd "$(dirname "$0")" && pwd)"
+mkdir -p "$HOME/.local/bin"
+for cmd in x-post x-thread x-media; do
+  ln -sfn "$D/scripts/$cmd" "$HOME/.local/bin/$cmd"
+done
+
 npx -y skills add enesgules/dotfiles -g -y -a codex -s optimise-github-actions x-post-drafting
 npx -y skills add cursor/plugins -g -y -a codex -s typescript-best-practices unslop
 npx -y skills add vercel-labs/agent-skills -g -y -a codex -s vercel-react-best-practices
