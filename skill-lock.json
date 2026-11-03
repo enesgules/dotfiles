@@ -482,6 +482,96 @@
       "skillFolderHash": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89",
       "installedAt": "2026-11-03T09:54:10.299Z",
       "updatedAt": "2026-11-03T09:54:10.299Z"
+    },
+    "animate": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/animate/SKILL.md",
+      "skillFolderHash": "fe46ac61092a8cf086dce6a907fc98295a600d3d",
+      "installedAt": "2026-11-03T15:04:21.109Z",
+      "updatedAt": "2026-11-03T15:04:21.109Z"
+    },
+    "animate-expo": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/animate-expo/SKILL.md",
+      "skillFolderHash": "6874701c790c7e74926ccd0a8716647a81424c85",
+      "installedAt": "2026-11-03T15:04:21.113Z",
+      "updatedAt": "2026-11-03T15:04:21.113Z"
+    },
+    "ask-sonner": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/ask-sonner/SKILL.md",
+      "skillFolderHash": "aeca3dba0eb0415fa5a310cd6823b824fe60323d",
+      "installedAt": "2026-11-03T15:04:21.114Z",
+      "updatedAt": "2026-11-03T15:04:21.114Z"
+    },
+    "break-ui": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/break-ui/SKILL.md",
+      "skillFolderHash": "f2a3441d4cf14df060ee363e155502a4818b5f8d",
+      "installedAt": "2026-11-03T15:04:21.115Z",
+      "updatedAt": "2026-11-03T15:04:21.115Z"
+    },
+    "find-animation-opportunities": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/find-animation-opportunities/SKILL.md",
+      "skillFolderHash": "e6443880f38e33cf78e5d678471eed35e8566763",
+      "installedAt": "2026-11-03T15:04:21.116Z",
+      "updatedAt": "2026-11-03T15:04:21.116Z"
+    },
+    "improve-animations": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/improve-animations/SKILL.md",
+      "skillFolderHash": "d3ce6f348009d830b89e7a830cc958245aea2ad6",
+      "installedAt": "2026-11-03T15:04:21.117Z",
+      "updatedAt": "2026-11-03T15:04:21.117Z"
+    },
+    "mobile-native": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/mobile-native/SKILL.md",
+      "skillFolderHash": "fdad6e6e91d8bbfda7164c7027269a8389dbadcd",
+      "installedAt": "2026-11-03T15:04:21.117Z",
+      "updatedAt": "2026-11-03T15:04:21.117Z"
+    },
+    "pick-ui-library": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/pick-ui-library/SKILL.md",
+      "skillFolderHash": "370e19776f0aa2403a2edeed78266bd6a5d78036",
+      "installedAt": "2026-11-03T15:04:21.118Z",
+      "updatedAt": "2026-11-03T15:04:21.118Z"
+    },
+    "remove-animations": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/remove-animations/SKILL.md",
+      "skillFolderHash": "e1d06083891b6445c7fb5dae31f06b1e8b81f0dc",
+      "installedAt": "2026-11-03T15:04:21.119Z",
+      "updatedAt": "2026-11-03T15:04:21.119Z"
+    },
+    "write-swift": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/write-swift/SKILL.md",
+      "skillFolderHash": "bdefda3891d347b8a183bdc727e4a1de2be3c82b",
+      "installedAt": "2026-11-03T15:04:21.120Z",
+      "updatedAt": "2026-11-03T15:04:21.120Z"
     }
   },
   "dismissed": {
