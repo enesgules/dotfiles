@@ -8,12 +8,12 @@ disable-model-invocation: true
 
 One job: what this change costs on a hot path, and the proof behind each speed claim. Design goes to the Mitchell seat, style to Dax, security to Filippo. For those, write one handoff line.
 
-This lens comes from Yagiz's public Node.js, Ada, and simdutf reviews and his blog. Quote him only from [references/research.md](references/research.md), with its link. Read that file only to quote him or to write a benchmark request (section 4).
+This lens comes from Yagiz's public Node.js, Ada, and simdutf reviews, his blog, and his posts on the X web rewrite. Quote him only from [references/research.md](references/research.md), with its link. Read that file only to quote him or to write a benchmark request (section 4).
 
 ## Method
 
-1. Find the hot paths: code that runs per request, render, list item, keystroke, or navigation, or at startup. Done when each changed function is marked hot or cold. If all are cold, write "No hot path, no findings." and stop.
-2. On each hot path, count per call: allocations, copies, parses, serializations, and crossings (JS and native, server and client, app and database, main thread and worker).
+1. Find the hot paths: code that runs per request, render, list item, stream chunk, keystroke, or navigation, or at startup. Done when each changed function is marked hot or cold. If all are cold, write "No hot path, no findings." and stop.
+2. On each hot path, count per call: allocations, copies, parses, serializations, and crossings (JS and native, server and client, app and database, main thread and worker or threadpool). Count the bytes the change ships: JS per route, or binary and install size.
 3. Check each speed claim against the proof standard.
 
 ## Standards
@@ -22,7 +22,7 @@ This lens comes from Yagiz's public Node.js, Ada, and simdutf reviews and his bl
 2. **No throw on an expected path.** Creating, throwing, and catching errors is costly. Use `URL.parse()`, `statSync(p, { throwIfNoEntry: false })`, and `safeParse`.
 3. **Fewer crossings.** An N+1 becomes one query or a batch. Independent `await`s in a loop become `Promise.all`. A client fetch in `useEffect` that the server could do is a waterfall. Return only the fields the caller reads. Watch the RSC payload size.
 4. **Lazy and streamed.** Dynamic `import()` for heavy modules on cold paths and in entry points. Iterate or stream (`opendir`, `for await`, pages) instead of loading all of it.
-5. **Free event loop.** No `*Sync` fs, zlib, or spawn, and no large `JSON.parse`, in a request handler. No heavy work in a render that runs on each keystroke.
+5. **Free event loop.** No unbounded `*Sync` fs, zlib, or spawn, and no large `JSON.parse`, in a request handler. Small sync work in bounded slices, with a yield between slices, is fine and often faster than a threadpool trip per chunk. No heavy work in a render that runs on each keystroke.
 6. **Platform first.** `URL.parse`, `Uint8Array.fromBase64`, `Promise.withResolvers`, `node:timers/promises`, `structuredClone`, `Array.fromAsync`. No dependency for a few lines.
 7. **Bounded caches.** A `Map` keyed by user input with no bound is a memory leak and a denial of service.
 8. **Numbers explain themselves.** Each threshold and magic number has a comment with its reason.
@@ -51,6 +51,8 @@ A speed claim with no measurement is a question. A real claim has:
 - The runtime version, dataset, run count, medians, and the noise.
 - The inputs that got slower, not only the wins.
 - A table of before, after, and delta, for example "1.24x (-19%)".
+- Client code: the compressed JS delta per route, base against head. A runtime or CLI: the binary or install size.
+- Faster pages: the Core Web Vital it moves (LCP, INP, or CLS) and how p75 field data will confirm it. Lighthouse is only a lab check.
 - The limiter: why is the gain not twice as large?
 
 If there are no numbers, write the exact command to run, with its input.

@@ -383,3 +383,16 @@ No Cursor rules or Figma-to-code workflows from him were found. His repos have `
 - SpaceXSI rename coverage: https://teslanorth.com/2026/10/04/elon-musk-spacexai-spacexsi-rename/
 - Post indexes: https://posts.design/authors/benji-taylor, https://superx.so/creators/benjitaylor
 - Notification coverage: https://roboin.io/article/en/2026/06/24/x-updates-in-app-notification-design/
+
+---
+
+## Update 2026-11-03: recent posts
+
+Source: 99 of his own X posts, 2026-08-01 to 2026-11-03, read through the fxtwitter timeline API. Quotes are verbatim.
+
+- Preview before save: "see how your profile will look to others before you hit save" (https://x.com/benjitaylor/status/2116227521645588644)
+- In place (2 posts): "a quick overview of an account, without interrupting your current context" (https://x.com/benjitaylor/status/2086543562758303893). Also: "Tapping now shows a tooltip with a seamless way to add to a folder." (https://x.com/benjitaylor/status/2083357235737153881)
+- Parity (3 posts): "This is part of our broader push for more parity across platforms." (https://x.com/benjitaylor/status/2096305944208748890)
+- Rare screens (2 posts): "a screen you see a lot when connecting your Grok Bot to other apps. No more plain black screen!" (https://x.com/benjitaylor/status/2108367328396370074)
+- Motion, for the Emil handoff: he quoted "If it can be animated in code, it probably should be animated in code" and said "more pertinent than ever" (https://x.com/benjitaylor/status/2103647152174162226).
+- Tone: "The reward for making something good is a longer list of things you now know are wrong with it" (https://x.com/benjitaylor/status/2095911324777893999)

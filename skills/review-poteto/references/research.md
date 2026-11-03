@@ -339,3 +339,18 @@ Secondary:
 - Matt Van Horn, X article (2026-10-17): https://x.com/mvanhorn/article/2111481455906103390
 - Workshop re-upload: https://www.youtube.com/watch?v=PaPpyQocMww
 - Auto-transcript: https://www.usetranscribe.io/yt/PaPpyQocMww/spacex-ai-engineer-tan
+
+---
+
+## Update 2026-11-03: recent posts
+
+Source: 125 of their own X posts, 2026-10-09 to 2026-11-03, read through the fxtwitter timeline API. Quotes are verbatim.
+
+- Bio: "grok @bot at @SpaceXSI. react compiler core team, prev cursor, meta, netflix". Grok Bot is a general assistant ("the best assistant and employee you can hire", https://x.com/poteto/status/2113426421075050909), not a code-review bot.
+- Change of mind on adversarial review: "i now consider adversarial reviews mostly a waste of tokens. far better to use those tokens on empirical combined with formal verification" and "agents tend to just get lost in the nitpicks and yagnis" (https://x.com/poteto/status/2117437607940681849)
+- interrogate: "i have updated pstack to use the interrogate skill less, and eventually i think i may remove it altogether" (same post). The advice above to use interrogate at the chair level is obsolete. Proof by run stays.
+- Formal verification (6 posts): "used TLA+ heavily to find bugs in the game's various state machines" (https://x.com/poteto/status/2117043478140276847)
+- Tests (3 posts): "expect tests: just print stuff out and capture it in the test. makes behavior legible" and "property based tests, fuzzing, and even full-system deterministic simulation testing" (https://x.com/poteto/status/2114626630429913383)
+- UI proof: "most commonly by actually running and interacting with it like a real user would" (https://x.com/poteto/status/2109436202554372476)
+- Comments: "comments are banned by a lint rule. if code needs explaining, the fix is a better name or a test" (https://x.com/poteto/status/2117043478140276847)
+- Tone: "i never let agents write for me. whether it's docs, or tweets" (https://x.com/poteto/status/2109885001584292091). The X voice is hand-written. GitHub text can be agent-written.

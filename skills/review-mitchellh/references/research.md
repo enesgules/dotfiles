@@ -262,3 +262,18 @@ Each item names its Ghostty source. The translation to other stacks is my infere
 - [Fragmented podcast ep. 310 (Apr 2026)](https://fragmentedpodcast.com/tags/mitchell-hashimoto/). Not listened to.
 - [Simon Willison on Vouch](https://simonwillison.net/2026/Feb/7/vouch/)
 - [The Register on Superlogical](https://www.theregister.com/a/5281970)
+
+---
+
+## Update 2026-11-03: recent posts
+
+Source: 78 of his own X posts, 2026-08-11 to 2026-11-03, read through the fxtwitter timeline API. Quotes are verbatim.
+
+- Role. Bio: "Co-founder of @Superlogical. Creator of Ghostty." Superlogical started about June 2026: "the 4 months of Superlogical existening" (https://x.com/mitchellh/status/2109279616519241920). Its product is Rex, a terminal multiplexer: "a custom binary protocol where the server is maintaining N replica distributed terminal state machines" (https://x.com/mitchellh/status/2093451043661316217).
+- libghostty is in JetBrains IDEs (https://x.com/mitchellh/status/2115101011518095385) and Termius (https://x.com/mitchellh/status/2116186029875134574). Ghostty 1.4 "fixes 10 security advisories" (https://x.com/mitchellh/status/2115124583170974193).
+- Benchmark harness (4 posts): "we need the test harness to compare what exactly you were running, how, and what you measured. This matters quite a lot. the data is only one part of it." and "LLMs are sycophantic so very often I'll find they harness other software wrong." (https://x.com/mitchellh/status/2106913487800934903)
+- Whiteboard defense: "if I ask "why did you do X instead of Y?", "what happens if this actor behaves maliciously?", "what data structure did you use here and why?", or "where does this fail?" you should be able to answer confidently." (https://x.com/mitchellh/status/2100249348345057389)
+- Heuristics (2 posts): "Heuristics are not the way." (https://x.com/mitchellh/status/2107577887159386152)
+- Differential tests (2 posts): "For the pty stream we assert byte equality." (https://x.com/mitchellh/status/2090893729469268109)
+- Agent over-reach: "Codex decided the best path forward was to implement an unauthenticated network API to every server to shut itself down." (https://x.com/mitchellh/status/2089446702285758559)
+- Not adopted: "full forwards+backwards API compatibility with clients and servers" for Rex (https://x.com/mitchellh/status/2112286460309364845). It conflicts with this repo's rule against backward compatibility.

@@ -242,3 +242,21 @@ Each heuristic shows its source, or says "Inference".
 - In 2026, most text under his name is agent-written. His human review voice is about 100 short comments, which is thin for line-level code taste.
 - Full-stack type safety and tRPC show up in his values and docs, not in 2026 review comments. Local-first sync is not a current lens (he removed T3 Chat's custom sync engine, and offline is "wontfix").
 - The `npx skills add` commands are not tested.
+
+---
+
+## Update 2026-11-03: recent posts
+
+Source: 256 of his own X posts, 2026-10-22 to 2026-11-03, read through the fxtwitter timeline API. Quotes are verbatim.
+
+- Role. Bio: "Full time CEO @t3dotcodes & @t3dotchat. Part time YouTuber, investor, and developer" (https://x.com/theo).
+- Scale: "Almost $5m/day in tokens going through T3 Code 🤯 Almost at 750,000 installations. 100k DAUs will be hit this week." (https://x.com/theo/status/2114897663821038017)
+- Evals as proof (4 posts): "turned them into a generic eval I can run to test changes to the tools and their descriptions" and "Step 5: merge it (because error rates are better now)" (https://x.com/theo/status/2114955695434993702).
+- Size is a cost (3 posts): "Just had an agent's PR get blocked because it added 100 bytes to a payload. You can prevent the slop, you just have to care enough to do it." (https://x.com/theo/status/2115611204001661029)
+- Slow networks (4 posts): "Pretty sure we're the only major player that's measuring their load times in 3g speeds" (https://x.com/theo/status/2114353462825886096)
+- Agents are a surface (4 posts): "If I have to go to a dashboard to use your product, I'm not going to use your product." (https://x.com/theo/status/2115260769558478964)
+- Nightly as QA: "nightly users are our QA team" (https://x.com/theo/status/2114631715201376709)
+- Platform cost: "One of my biggest regrets is letting the team support this garbage." (Windows ARM, https://x.com/theo/status/2115347721255350602)
+- Change of mind on hard "no" 5: "T3 Code has /btw and side chats now. I caved." (https://x.com/theo/status/2116446018506236371). A feature that many users ask for now often ships as an opt-in.
+- Merging: "If you're still merging most PRs by hand, you're behind" (https://x.com/theo/status/2114479901416071208)
+- On persona seats: "Defined roles and "agent" archetypes are so 2024" (https://x.com/theo/status/2117086643547177469). His own council uses one model from each provider, not roles.

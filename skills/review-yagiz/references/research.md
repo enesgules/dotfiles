@@ -272,3 +272,15 @@ Social and talks:
 - https://syntax.fm/show/716/js-perf-wins-and-new-node-js-features-with-yagiz-nizipli/transcript (Jan 2024, paraphrased only)
 
 Sources that failed: X (x.com/yagiznizipli) was not reachable through search or fetch. Web search found no press item about his move to SpaceXAI.
+
+---
+
+## Update 2026-11-03: recent posts
+
+Source: 146 of his own X posts, 2026-08-01 to 2026-11-03, read through the fxtwitter timeline API. Quotes are verbatim.
+
+- Role. Bio: "leading @X web at @spacexsi". He leads the X web rewrite (https://x.com/yagiznizipli/status/2088663891727270251), and speedy-router is for it: "continuing to add in more as we build out X." (https://x.com/yagiznizipli/status/2088811729807462591)
+- Bytes (3 posts): "Just found a way to reduce javascript size by 51% on the new rewrite of X." (https://x.com/yagiznizipli/status/2114180433571176711)
+- Field data (2 posts): "For the first time ever, more of our URLs pass Core Web Vitals as Good than fall into Need Improvement or Poor." (https://x.com/yagiznizipli/status/2097720915840688430)
+- Streams (3 posts): "3x to 13x improvement on web streams pipelines." (https://x.com/yagiznizipli/status/2090475848746864986). The linked Node.js PR handles large zlib input "in slices with an event-loop turn in between, so a huge chunk cannot block the loop for its full duration."
+- AI: "All of my investigations are done with Grok 4.7." (https://x.com/yagiznizipli/status/2115440750733439368). Also: "keep reading code folks. AI isn’t there yet." (https://x.com/yagiznizipli/status/2093137269322330297)

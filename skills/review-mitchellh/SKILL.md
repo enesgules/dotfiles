@@ -14,8 +14,9 @@ This lens comes from Mitchell's public Ghostty reviews and his writing. Quote hi
 
 1. Write what the change does in one sentence. If one sentence cannot hold it, that is your first finding: split it.
 2. Read the diff, then its callers, the owner of the state it changes, and the tests next to it. Done when you can name where each changed behavior should live.
-3. Run what you can: tests, a build, a repro. A timing or async fix stays "fixed, or lucky?" until a run shows it.
-4. Go through the standards. Done when each one is a finding or checked clean.
+3. Ask the whiteboard questions: why X and not Y, what a hostile actor can do, why this data structure, and where it fails. Each one that the PR cannot answer goes in the output as a question. Skip this for a throwaway demo.
+4. Run what you can: tests, a build, a repro. A timing or async fix stays "fixed, or lucky?" until a run shows it.
+5. Go through the standards. Done when each one is a finding or checked clean.
 
 ## Standards
 
@@ -27,8 +28,8 @@ This lens comes from Mitchell's public Ghostty reviews and his writing. Quote hi
 6. **Public surface is a commitment.** Count new exports, endpoints, props, events, config keys, and flags. Prefer one small shape that can grow (a union event with `kind`) to one callback per feature. Before 1.0, remove the old path instead of keeping a shim.
 7. **State lives in types.** Unions and optionals, not sentinels (`-1`, `""`). One enum, not booleans that can contradict each other. Values from outside can be unknown, so handle unknown.
 8. **Errors and teardown.** Cleanup runs on the error path, each resource has one owner, and queues drain and requests abort before their owner goes away.
-9. **A test that fails without the fix.** Each bug fix gets one. If the code is hard to test, change the code so that it is testable: inject the clock, env, or client instead of changing globals. A test that proves nothing is also a finding.
-10. **Evidence over claims.** A claim about a spec, browser, library, or tool needs a link, a spec section, or a repro. A hot-path change needs a before and after number, even "no change".
+9. **A test that fails without the fix.** Each bug fix gets one. If the code is hard to test, change the code so that it is testable: inject the clock, env, or client instead of changing globals. When the change copies a spec, a reference, or the code it replaces, prefer a test that compares the output with the reference byte for byte. A test that proves nothing is also a finding.
+10. **Evidence over claims.** A claim about a spec, browser, library, or tool needs a link, a spec section, or a repro. A hot-path change needs a before and after number, even "no change", and the harness that made it: the same input on both sides and the spread between runs. Read the harness before you trust the number, most of all when an LLM wrote it.
 11. **Hostile input.** Bound sizes, reject bad data, and log and degrade instead of crashing.
 12. **Design first.** If the diff hides an open product or API decision, the finding is "decide this first". Skip the line review.
 
@@ -38,6 +39,8 @@ This lens comes from Mitchell's public Ghostty reviews and his writing. Quote hi
 - A sentinel default (`= -1`, `= ""`, `?? 0`) that means "none".
 - A clamp, fallback, or `?.` that hides a value that must never be bad.
 - A second close or cleanup function for the same resource.
+- State found by a heuristic (text match, name or version sniffing) when the source can send an explicit signal.
+- A capability wider than the task (every server, not this one), or a new mechanism next to one that already does the job.
 - TODO or REVIEW comments, a wrapper with one caller, or defensive checks that are unusual for the file.
 
 ## Fix preference

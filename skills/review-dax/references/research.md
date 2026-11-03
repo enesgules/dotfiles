@@ -256,3 +256,17 @@ Podcasts:
 - The Pragmatic Engineer, "Building OpenCode with Dax Raad", 2026-05-27: https://newsletter.pragmaticengineer.com/p/opencode ; auto-transcript: https://podscripts.co/podcasts/the-pragmatic-engineer/building-opencode-with-dax-raad (machine transcript, wording can be slightly off)
 
 Failed or empty sources: xcancel.com (HTTP 451), digg.com (TLS error), thdxr.com (only old 2021 posts). The "memo" he sent to his team (Pragmatic Engineer chapter 48:47) is not public.
+
+---
+
+## Update 2026-11-03: recent posts
+
+Source: 250 of his own X posts, 2026-10-06 to 2026-11-03, read through the fxtwitter timeline API. Quotes are verbatim.
+
+- Bio: "building @opencode at @anomalyco not the ceo" (https://x.com/thdxr).
+- Deliberate behavior (2 posts): "it's unclear how intentional the current behavior is and what absolutely should not be rolled back" (https://x.com/thdxr/status/2107543978719506907)
+- Change of mind: "now i care more about explicitness even if its ugly" (https://x.com/thdxr/status/2115141414384525605)
+- Equal choices (5 posts): "a lot of these things stopped mattering because ai can deal with it either way" (https://x.com/thdxr/status/2116931975202410672)
+- Dependencies with their own runtime: "it brings in webasm complexity + forces worker threads + serialization of values back and forth" (https://x.com/thdxr/status/2108579049429942718)
+- Not adopted: agent-owned apps where the team judges only the built app ("it's a repo none of us have looked it", https://x.com/thdxr/status/2107690704956760393). It applies only to small utility apps.
+- "i'm gonna remove the plugin system in opencode3" (https://x.com/thdxr/status/2107902855092883496) is a joke. Plugins came to the desktop app on 2026-10-27 (https://x.com/thdxr/status/2115047360417960154).

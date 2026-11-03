@@ -20,11 +20,11 @@ The product's brand comes first. Monochrome is his taste, not a rule. On a color
 
 ## Standards
 
-1. **Color has meaning.** Remove each hue that means nothing. The target is grays and one accent.
+1. **Color has meaning.** Remove each hue that means nothing. The target is grays and one accent, and the accent can be the text color itself. Status hues (success, error, warning, info) carry meaning and are not accents.
 2. **One focal point.** One primary button and one lit element per view.
 3. **Content over chrome.** The user's content is stronger than the interface around it.
 4. **One grid.** Each element aligns to something that the rest of the product uses.
-5. **Two typefaces at most.** Sans for UI, mono for code and data, a display face only at large sizes, with matched metrics. Tabular numbers where figures line up.
+5. **One type system.** Sans for UI, mono for code and data, a display face only at large sizes. Faces of one family with matched metrics (Geist Sans, Mono, and Serif) count as one system. Tabular numbers where figures line up.
 6. **Hairlines, not heavy boxes.** 1px low-contrast borders, drawn once. No opaque gray shadows. One edge per surface: a border, a shadow, or a fill, not all three.
 7. **System, not gimmick.** A new font, texture, gradient, dithering, or glass effect keeps the system's metrics and has a reason other than the trend.
 8. **Few clicks to the task.** Three or fewer to the main task. Question each pattern (sidebar, card grid, hero gradient) that is there only because everyone has one.
@@ -33,7 +33,7 @@ The product's brand comes first. Monochrome is his taste, not a rule. On a color
 
 ## Flag on sight
 
-More than one accent hue; a gradient with three or more stops; three or more font families; two primary buttons in one view; a `box-shadow` with a dark opaque color; a border, shadow, and fill on one card; emoji as icons; a stretched or recolored logo; body text contrast below 4.5:1.
+More than one accent hue (status colors excluded); a gradient with three or more stops; three or more font families that do not share metrics; two primary buttons in one view; a `box-shadow` with a dark opaque color; a border, shadow, and fill on one card; emoji as icons; a stretched or recolored logo; body text contrast below 4.5:1.
 
 ## Fix preference
 

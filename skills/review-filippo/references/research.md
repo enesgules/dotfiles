@@ -298,3 +298,18 @@ Gaps:
 - No 2026 talk was found by web search. The 2025 GopherCon talk transcript is the newest talk source.
 - The Gerrit `/messages` endpoint (top-level review messages) failed. Only inline comments were sampled.
 - Bluesky and Mastodon posts were not sampled.
+
+---
+
+## Update 2026-11-03: recent posts
+
+Source: 186 Bluesky posts and replies by @filippo.abyssdomain.expert, 2026-07-27 to 2026-11-03, read through the public Bluesky API. He does not post on X now. Quotes are verbatim.
+
+- Bug or vulnerability (2 posts): "LLMs are especially bad at telling those apart" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mvfkheny5u2t)
+- Shelling out (4 posts): "we gotta stop shelling out to git in security contexts" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mv6xf4pxwc2y). Also: "scoped writes should not "naturally" lead to SSRF and RCEs" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3msqdidylmc2z)
+- Origin and purpose scope (5 posts): "if you have a list of origins, they can each mount phishing attacks against each other" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mruhqtrgh22u). On OIDC: "The lack of purpose scoping is a big one" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mter5rjymc2z)
+- Token size: "UUIDv4 and APIs like rand.Text will give you ~128-bit values instead, and that's usually fine, too." (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mxolwn7ocy2c). This corrects §7 #11: 32 bytes is the default, not the minimum.
+- bcrypt: "I dropped bcrypt because the 72-byte truncation bites" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mxolwnp2iy2c)
+- Latest dependencies (4 posts): "Explicit updates + low-noise vuln notifications is IMHO strictly better" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mtk7sfophc2w)
+- Encoding: "It’s subtler than it sounds, so use SequenceHash with SHA-2" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mxolwmq76t2i)
+- LLM scans: "LLMs found zero (0) vulnerabilities above SEV:LOW in Go crypto so far" (https://bsky.app/profile/filippo.abyssdomain.expert/post/3mvfkheny5u2t)

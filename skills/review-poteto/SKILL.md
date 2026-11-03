@@ -13,8 +13,8 @@ This lens comes from poteto's React Compiler reviews, the pstack skills they wro
 ## Method
 
 1. Run the repo's checks on the change: the type check, the linter (with the `eslint-plugin-react-hooks` recommended preset on React code, even with no compiler), and the tests near the change. Done when each one ran, or you wrote why it could not.
-2. Prove each candidate finding with a run against the real code: a failing test, a repro script, a type error, or a lint error. Leave out what you did not run, and count it under "Dropped". No findings is a valid result.
-3. For each finding that can happen again, name the rule that would stop it: a type, a test, a lint rule, or a CI check.
+2. Prove each candidate finding with a run against the real code: a failing test, a repro script, a type error, a lint error, a model-checker run (TLA+ or similar) for a state machine or concurrent code, or, for UI, a screenshot or video of the app driven like a user. Leave out what you did not run, and count it under "Dropped". No findings is a valid result.
+3. For each finding that can happen again, name the rule that would stop it: a type, a test, a lint rule, a CI check, or a formal model.
 
 ## Standards
 
@@ -22,10 +22,10 @@ This lens comes from poteto's React Compiler reviews, the pstack skills they wro
 2. **Memoization with a reason.** New code lets the compiler memoize, where the repo uses it. A new `useMemo` or `useCallback` needs a reason. Removing an existing one needs a test that covers it.
 3. **Bad states cannot be written.** A union with a `kind` field instead of a bag of optional fields or two booleans that must agree. A switch over a union ends in `const _exhaustive: never = x`. Build the shape into the type: `[T, ...T[]]` for non-empty, `start` and `duration` for a range.
 4. **Brands from guards.** A branded type comes from a type guard (`input is UserId`) or a schema parse, never from `as`. A guard that lies is worse than `as`. Derive types from the schema (`z.infer`).
-5. **The simplest total type.** Make a type stricter only where the loose type forces a `!`, a cast, or a "cannot happen" throw. Extra type machinery with no such need is a finding too.
+5. **The simplest total type.** Make a type stricter only where the loose type forces a `!`, a cast, or a "cannot happen" throw.
 6. **Guards at the boundary.** Validate at the edge, then trust the types inside. A guard inside is a fix only when the state it handles is legitimate. If not, fix the place where the bad state starts.
-7. **Tests that prove behavior.** Imagine two edits. Break the behavior: the test must fail. Change the internals: the test must still pass. Do not mock what you can run. A skipped test to make CI green is a block. An expected failure stays visible.
-8. **Comments are suspects.** A comment that explains a workaround means the code is wrong. A fact in a comment goes into a name or a constant. Keep only legal headers, external quirks, public API docs, and issue links. `@ts-ignore`, `@ts-expect-error`, or `eslint-disable` on a rule that protects correctness gets "MUST KILL" on that exact symbol.
+7. **Tests that prove behavior.** Imagine two edits. Break the behavior: the test must fail. Change the internals: the test must still pass. Do not mock what you can run. For output with many cases, prefer an expect test that prints the result. For an invariant, prefer a property or fuzz test. A skipped test to make CI green is a block. An expected failure stays visible.
+8. **Comments are suspects.** A comment that explains a workaround means the code is wrong. A fact in a comment goes into a name, a constant, or a test. Keep only legal headers, external quirks, public API docs, and issue links. `@ts-ignore`, `@ts-expect-error`, or `eslint-disable` on a rule that protects correctness gets "MUST KILL" on that exact symbol.
 9. **Agents copy what exists.** A bad example in the diff is a finding even when it works, because the next agent copies it.
 10. **Native over hand-rolled.** Code that replaces native browser behavior (sticky, scroll, focus, hit testing) gets the strictest check, because its bugs are real.
 11. **Low reader load.** A new reader can answer "where does X come from?" and "what can change X?" in 30 seconds. If not, cut a layer or cut state.
@@ -53,12 +53,11 @@ Ran: <each check and its result, for example `pnpm tsc --noEmit`: 0 errors>
 
 1. [block] path/to/file.tsx:42. <problem>. Proof: `<command>` → <the output line that shows it>. Fix: <change>. Rule: <type, test, lint, or CI check that stops it again>.
 2. [should] ...
-3. [nit] ...
 
 Dropped (not proven): <count, or none>
 Handoffs: <seat: one line>
 ```
 
-**block**: a proven bug, a broken Rule of React, a skipped test, or a suppression that hides a correctness rule. **should**: a weak type, a test that proves nothing, or a bad example that agents will copy. **nit**: three at most. Open the file before you cite a line.
+**block**: a proven bug, a broken Rule of React, a skipped test, or a suppression that hides a correctness rule. **should**: a weak type, a test that proves nothing, or a bad example that agents will copy. No nits, and no finding that only says the code is not needed: each finding shows wrong behavior. Open the file before you cite a line.
 
 Voice: short questions with exact places and counts ("could this derive in render?", "36 nodes in 9 of 10 fixtures"). The author keeps the choice on taste. Candor over agreement.

@@ -224,3 +224,14 @@ Secondary
 - Third-party skill (prior art, not his): https://github.com/tylergibbs1/evilrabbitdesin
 
 Sources that failed or were thin: the live Indent page (404, so I used the Wayback copy); vercel.com/about/evilrabbit (the page loads the dashboard shell, no bio text); a Spanish-language search for interviews found nothing new; the X timeline before Jun 2026 was not fully read (see the note below).
+
+---
+
+## Update 2026-11-03: recent posts
+
+Source: 87 of his own X posts, 2026-08-11 to 2026-11-03, read through the fxtwitter timeline API, and the CSS of deimos.evilrabbit.com.
+
+- Bio: "@vercel Head of Creative Studio".
+- Deimos, 2026-11-03: "I asked my agent to build a collection of our favorite designers, called Deimos." (https://x.com/evilrabbit_/status/2117459591508427009). The page uses three faces of one family: Geist Sans, Geist Mono, and Geist Serif as the display face. Its tokens set `--accent: var(--fg)`, and the only hues are status colors (support, refute, unsure, info). Inference from the CSS, not his words: the accent can be the text color, and status hues are not accents.
+- Geist Serif: "Introducing Geist Serif" (https://x.com/evilrabbit_/status/2116186171424563665)
+- Pace: "We gotta slow down a bit and focus more on ourselves and the work we want to put into the world." (https://x.com/evilrabbit_/status/2105145680654451127)

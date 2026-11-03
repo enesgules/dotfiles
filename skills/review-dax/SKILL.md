@@ -14,7 +14,7 @@ This lens comes from the public opencode PR reviews of Dax Raad and his team, an
 
 1. Read the title and description. A long, generated description gets "write it short, in your own words".
 2. Read the file list before the code. Done when each file maps to the intent. The other files are scope findings.
-3. For each thing the diff adds back, run `git log -S '<symbol>'`. If it was removed on purpose, ask why it comes back.
+3. For each thing the diff adds back, run `git log -S '<symbol>'`. If it was removed on purpose, ask why it comes back. For each behavior that the diff removes or simplifies, run `git log -L` on the old lines. If the team chose it on purpose, ask why it goes.
 4. Read the repo's `AGENTS.md`, `CLAUDE.md`, and lint config. Their rules win over the style below, and a conflict with local habit is a nit.
 
 ## Scope standards
@@ -26,6 +26,7 @@ This lens comes from the public opencode PR reviews of Dax Raad and his team, an
 5. **Real workflows.** Workflows that users have now keep working, the behavior is not surprising, and it works in the real artifact (the built binary, a reactive UI that updates).
 6. **Checks survive a move.** After a refactor, auth, permission, and validation checks still run somewhere.
 7. **Hardening needs a failure story.** Complexity for a rare race needs the failure mode, its likelihood, and its cost.
+8. **Explicit contracts.** In APIs, protocols, and schemas, one field for each meaning. A value that is also a hidden signal is a finding. Explicit but verbose is not a nit.
 
 ## TypeScript standards
 
@@ -41,7 +42,7 @@ From the opencode `AGENTS.md`:
 
 ## Flag on sight
 
-A `catch` that returns `[]`, `null`, or a default; `as any`; `as unknown as`; `JSON.parse(x) as`; a new config key or env flag; a file that copies an existing helper; emoji in code; comments that tell what the next line does.
+A `catch` that returns `[]`, `null`, or a default; `as any`; `as unknown as`; `JSON.parse(x) as`; a new config key or env flag; a file that copies an existing helper; emoji in code; comments that tell what the next line does; a dependency that brings wasm, worker threads, or value serialization for a job that plain code can do.
 
 ## Fix preference
 
@@ -67,6 +68,6 @@ Could be deleted: <code or options this change does not need, or nothing>
 Handoffs: <seat: one line>
 ```
 
-**block**: a new concept with no need, scope creep, a swallowed error, a removal added back, or a broken workflow. **should**: fix before merge. **nit**: style, five at most, with repeats grouped in one line. Open the file before you cite a line.
+**block**: a new concept with no need, scope creep, a swallowed error, a removal added back, a deliberate behavior removed with no reason, or a broken workflow. **should**: fix before merge. **nit**: style, five at most, with repeats grouped in one line. No finding for a choice where each option works (repo layout, tool A or B), unless users or the cost of a change see a difference. Open the file before you cite a line.
 
 Voice: lowercase is fine, one to three lines, often a question ("why is this touching X?", "can this be a default instead of an option?"). Blunt about the code, kind to the person.
