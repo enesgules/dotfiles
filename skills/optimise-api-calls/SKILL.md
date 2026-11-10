@@ -25,7 +25,7 @@ For each call on the critical path, write down the input it needs. A call can st
 Before you move a call, check these points. They are the reasons a serial order can be correct:
 
 - **Writes and side effects in order.** Money paths (charge, then record), ordered GitHub writes (check run, then comment), and anything one step gates on the result of an earlier one. Keep them serial, and say why in the report.
-- **Rate limits.** Some APIs ask callers to send requests one at a time (GitHub's REST guidance does) or apply secondary limits to bursts. Running in parallel is safe only when something bounds the concurrency. Find the bound before you rely on it: a library throttle (Octokit's throttling plugin queues requests and retries after a secondary limit), a `p-limit`, or a pool. If there is no bound, add one.
+- **Rate limits.** Many APIs cap concurrent requests or bursts (GitHub's secondary limit allows 100 concurrent requests per token, shared by REST and GraphQL). Running in parallel is safe when something bounds the concurrency: a library throttle (Octokit's throttling plugin queues requests and retries after a secondary limit), a `p-limit`, or a pool. Set the bound from the real limit: the provider's documented number, or the lower limit that the client, a fake or an earlier incident shows, minus headroom for other callers on the same token. A bound far under the real limit gives back the speed-up for no safety gain.
 - **Connection pools.** Ten parallel queries on a database pool of size 1 still run in series, and they can starve other requests. Check the pool size. HTTP-based clients such as Supabase REST and Upstash have no such limit.
 - **Consistency.** Two parallel reads can see different states of the data. This matters only when the code compares or combines them in a way that a race would break.
 - **Error behaviour.** `Promise.all` rejects on the first failure, but the other calls keep running. Use `Promise.allSettled` where a partial result is fine, and pass an `AbortSignal` where the other calls must stop.
@@ -69,7 +69,7 @@ import { compare } from "<skill-dir>/scripts/compare.mjs";
 await compare({ before: () => oldList(userId), after: () => newList(userId), runs: 10 });
 ```
 
-`compare` runs one warm-up of each (the first call pays for DNS, TLS and cold caches), then alternates before and after so network drift hits both sides equally. It prints p50, p90 and the speed-up, and it fails if the two sides return different results. Keep a copy of the old function next to the new one for this run. Use enough runs that p50 is stable: 4 for calls of several seconds, 25 for calls under a second.
+`<skill-dir>` is the folder that holds this SKILL.md. `compare` runs one warm-up of each (the first call pays for DNS, TLS and cold caches), then alternates before and after so network drift hits both sides equally. It prints p50, p90 and the speed-up, and it fails if the two sides return different results. Keep a copy of the old function next to the new one for this run. Start with 5 runs, and add more only when p50 and p90 differ by more than about 10%.
 
 TypeScript projects run the script with `npx tsx`. Two common problems:
 
@@ -83,6 +83,7 @@ After the deploy, compare the production p50 and p95 with the numbers from step 
 ## 5. Change the code safely
 
 - Keep the response the same, and make the before and after comparison in step 4 show that. Run the existing tests.
+- Keep the product behaviour the same: poll intervals, page sizes, what a list shows, how fresh the data is, and retry policy. These are product decisions, so the change stays inside how the calls are made. When a product change would help, put it under "What is left" as an option with its cost.
 - Add a test only for the behaviour that the change creates. Examples: the calls run at the same time (count the maximum number of calls in flight with fakes), a skipped call is not made for a given branch, or the dedupe keeps one copy. Do not add tests that only repeat the new `Promise.all`.
 - Add a one-line comment where the order is now deliberate, in both directions. Write "these run together; the throttle bounds concurrency" or "serial on purpose: GitHub gates the comment on the check run". The next reader then does not undo it.
 - If the code was serial for a documented reason (an old PR or a comment), say in the PR why that reason no longer holds.
