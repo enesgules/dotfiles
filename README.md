@@ -6,7 +6,7 @@ AI agent config and terminal config, symlinked into place.
 
 - `AGENTS.md` — global rules, linked as `~/.claude/CLAUDE.md` and `~/.codex/AGENTS.md`
 - `skills/` — skills I wrote. Third-party skills (also the Context7 ones from `upstash/context7`) are listed in `skill-lock.json` and installed again by `install.sh`. Add one with `npx skills add <owner/repo> -g -a claude-code codex -s <skill>`
-- `skills/optimise-api-calls/` — finds the waterfall in a slow route's outbound calls (serial awaits, serial pages, duplicate lookups, per-request clients), fixes it, and proves the speed-up with `scripts/compare.mjs` (alternating before and after runs that must return the same result).
+- `skills/optimise-api-calls/` — finds the waterfall in a slow route's external and internal API calls (serial awaits, serial pages, duplicate lookups, per-request clients), fixes it, and proves the speed-up with `scripts/compare.mjs` (alternating before and after runs that must return the same result).
 - `skills/x-post-drafting/` — drafts X posts for developers and indie builders (value, build-in-public, launch, thread). The agent does not publish.
 - `install-cloud-skills.sh` — installs a focused set of the dotfiles and third-party skills in Codex Cloud. Run it from the cloud environment's install script after checking out this repository.
 - `ghostty/config` — Ghostty terminal
@@ -22,7 +22,7 @@ AI agent config and terminal config, symlinked into place.
 
     npx skills add enesgules/dotfiles --skill optimise-github-actions
 
-`optimise-api-calls` measures a slow route's outbound calls, shortens the critical path and times the old and new code against the real services.
+`optimise-api-calls` measures a slow route's external and internal API calls, shortens the critical path and times the old and new code against the real services.
 
     npx skills add enesgules/dotfiles --skill optimise-api-calls
 
