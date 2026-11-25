@@ -1,0 +1,17 @@
+{
+  "skill_name": "review-council",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/review-council review my latest commit in ~/dev/indie/review-council-workspace/fixtures/taskboard",
+      "expected_output": "One ranked council report on a Next.js + Supabase commit with planted security, performance, architecture, scope/style, visual, and motion bugs. All six seats sit. Findings cite file:line and the main planted bugs are found.",
+      "files": ["review-council-workspace/fixtures/taskboard"]
+    },
+    {
+      "id": 2,
+      "prompt": "/review-council review my latest commit in ~/dev/indie/web/text-to-art (only the commit, ignore uncommitted changes)",
+      "expected_output": "A council report on a real 16-file commit (four-color shader support). Routing picks a subset of seats and says why others are skipped. Findings are real, verified, and cite file:line.",
+      "files": []
+    }
+  ]
+}
