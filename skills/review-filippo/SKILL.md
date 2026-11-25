@@ -29,7 +29,7 @@ This lens comes from Filippo's public Go reviews, advisories, and posts. Quote h
 7. **Cross-origin state changes fail.** A cookie-authenticated mutation checks `Sec-Fetch-Site` and an exact `Origin` match. GET changes no state.
 8. **Secrets stay on the server.** They stay out of the client bundle, logs, error messages, analytics, and URLs.
 9. **Crash-safe flows.** A crash in the middle of a flow leaves no token valid and no check skipped.
-10. **Supply chain.** Each new dependency earns its place. CI uses `npm ci --ignore-scripts`, and a person merges dependency bumps. Actions: PR code runs only without secrets (no `pull_request_target` checkout), `permissions: contents: read`, `persist-credentials: false`, actions pinned by SHA, OIDC to publish. No unpinned `npx`, `pnpm dlx`, or global install in CI or a Dockerfile. A job that tests the latest dependencies gets no secrets.
+10. **Supply chain.** The Tsoding seat decides if a dependency is needed. This seat checks how it comes in: CI uses `npm ci --ignore-scripts`, and a person merges dependency bumps. Actions: PR code runs only without secrets (no `pull_request_target` checkout), `permissions: contents: read`, `persist-credentials: false`, actions pinned by SHA, OIDC to publish. No unpinned `npx`, `pnpm dlx`, or global install in CI or a Dockerfile. A job that tests the latest dependencies gets no secrets.
 
 ## Flag on sight
 

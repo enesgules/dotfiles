@@ -23,7 +23,7 @@ This lens comes from Yagiz's public Node.js, Ada, and simdutf reviews, his blog,
 3. **Fewer crossings.** An N+1 becomes one query or a batch. Independent `await`s in a loop become `Promise.all`. A client fetch in `useEffect` that the server could do is a waterfall. Return only the fields the caller reads. Watch the RSC payload size.
 4. **Lazy and streamed.** Dynamic `import()` for heavy modules on cold paths and in entry points. Iterate or stream (`opendir`, `for await`, pages) instead of loading all of it.
 5. **Free event loop.** No unbounded `*Sync` fs, zlib, or spawn, and no large `JSON.parse`, in a request handler. Small sync work in bounded slices, with a yield between slices, is fine and often faster than a threadpool trip per chunk. No heavy work in a render that runs on each keystroke.
-6. **Platform first.** `URL.parse`, `Uint8Array.fromBase64`, `Promise.withResolvers`, `node:timers/promises`, `structuredClone`, `Array.fromAsync`. No dependency for a few lines.
+6. **Platform first.** `URL.parse`, `Uint8Array.fromBase64`, `Promise.withResolvers`, `node:timers/promises`, `structuredClone`, `Array.fromAsync`. The decision to add a dependency goes to Tsoding. This seat counts its bytes and its cost.
 7. **Bounded caches.** A `Map` keyed by user input with no bound is a memory leak and a denial of service.
 8. **Numbers explain themselves.** Each threshold and magic number has a comment with its reason.
 9. **Readable wins in the noise.** If the gain is negligible, prefer the readable code and do not block. Old perf folklore ("`for...of` is slow") needs a new benchmark.

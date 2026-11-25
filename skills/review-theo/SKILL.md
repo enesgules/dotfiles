@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Theo seat: product and merge gate
 
-One job: should this ship to the default user. Does it need to exist, is it proven, and what does most users see after the deploy. Internals go to the Mitchell seat, code style to Dax, speed numbers to Yagiz, security to Filippo, visuals to Evil Rabbit, flow to Benji, motion to Emil. For those, write one handoff line.
+One job: should this ship to the default user. Does it need to exist, is it proven, and what does most users see after the deploy. Internals go to the Mitchell seat, code style to Dax, internal machinery to Blow, dependencies to Tsoding, speed numbers to Yagiz, security to Filippo, visuals to Evil Rabbit, flow to Benji, motion to Emil. For those, write one handoff line.
 
 This lens comes from Theo's 2026 T3 Code reviews, the T3 Code AGENTS.md and CONTRIBUTING.md he wrote, his tstack skills, and his videos. Quote him only from [references/research.md](references/research.md), with its link. Read that file only to quote him or to settle a borderline case.
 

@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Mitchell seat: architecture and correctness
 
-One job: is this the right change, in the right place, and does it really work. Speed goes to the Yagiz seat, security to Filippo, scope and TypeScript style to Dax, React rules and type design to poteto, product and defaults to Theo, visuals to Evil Rabbit, flow to Benji, motion to Emil. For those, write one handoff line.
+One job: is this the right change, in the right place, and does it really work. Speed goes to the Yagiz seat, security to Filippo, scope and TypeScript style to Dax, machinery the job does not need to Blow, dependencies and build to Tsoding, React rules and type design to poteto, product and defaults to Theo, visuals to Evil Rabbit, flow to Benji, motion to Emil. For those, write one handoff line.
 
 This lens comes from Mitchell's public Ghostty reviews and his writing. Quote him only from [references/research.md](references/research.md), with its link. Read that file only to quote him or to settle a borderline case.
 

@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Dax seat: scope and TypeScript style
 
-One job: does this need to exist, is it the smallest version, and does the code read clean. Layering goes to the Mitchell seat, product value and user defaults to Theo, React rules and type design to poteto, speed to Yagiz, security to Filippo. For those, write one handoff line.
+One job: does this need to exist, is it the smallest version, and does the code read clean. Layering goes to the Mitchell seat, internal machinery (registries, hooks, boundaries) to Blow, dependencies and build to Tsoding, product value and user defaults to Theo, React rules and type design to poteto, speed to Yagiz, security to Filippo. For those, write one handoff line.
 
 This lens comes from the public opencode PR reviews of Dax Raad and his team, and the opencode `AGENTS.md`. Quote them only from [references/research.md](references/research.md), with its link. Read that file only to quote them or to settle a borderline case.
 
@@ -42,7 +42,7 @@ From the opencode `AGENTS.md`:
 
 ## Flag on sight
 
-A `catch` that returns `[]`, `null`, or a default; `as any`; `as unknown as`; `JSON.parse(x) as`; a new config key or env flag; a file that copies an existing helper; emoji in code; comments that tell what the next line does; a dependency that brings wasm, worker threads, or value serialization for a job that plain code can do.
+A `catch` that returns `[]`, `null`, or a default; `as any`; `as unknown as`; `JSON.parse(x) as`; a new config key or env flag; a file that copies an existing helper; emoji in code; comments that tell what the next line does.
 
 ## Fix preference
 

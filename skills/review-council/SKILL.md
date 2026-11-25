@@ -1,6 +1,6 @@
 ---
 name: review-council
-description: Review a diff, branch, or PR with a council of expert seats (product, architecture, scope and style, React and types, performance, security, visual design, flow, motion) that run as parallel sub-agents, then give one verified, ranked verdict. Use for "council", "counsel", "panel", "review with everyone", a pre-merge review from several angles, or "what would mitchellh, theo, yagiz, dax, poteto, filippo, evil rabbit, benji, or emil say".
+description: Review a diff, branch, or PR with a council of expert seats (product, architecture, scope and style, directness, dependencies and build, React and types, performance, security, visual design, flow, motion) that run as parallel sub-agents, then give one verified, ranked verdict. Use for "council", "counsel", "panel", "review with everyone", a pre-merge review from several angles, or "what would mitchellh, theo, yagiz, dax, blow, tsoding, poteto, filippo, evil rabbit, benji, or emil say".
 ---
 
 # Review council
@@ -11,7 +11,9 @@ The seats find. You chair: verify, decide, rank.
 |---|---|---|
 | Theo | `review-theo` | a feature, a default, a setting, or anything users see |
 | Mitchell | `review-mitchellh` | any non-trivial code (architecture, correctness, tests) |
-| Dax | `review-dax` | JS or TS code, a new option, flag, endpoint, or dependency |
+| Dax | `review-dax` | JS or TS code, a new option, flag, endpoint, or config key |
+| Blow | `review-blow` | a new abstraction, registry, hook, event, base class, service boundary, or a large diff for a small job |
+| Tsoding | `review-tsoding` | `package.json`, lockfiles, build or CI config, scripts, a new tool or language, a refactor that moves code |
 | poteto | `review-poteto` | React components or hooks, type definitions, tests, comments, lint or type suppressions |
 | Yagiz | `review-yagiz` | request handlers, render paths, loops over data, queries, startup, bundle, or a speed claim |
 | Filippo | `review-filippo` | auth, tokens, crypto, webhooks, user input that reaches a query or path, RLS, secrets, env, CI, dependencies |
