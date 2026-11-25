@@ -23,7 +23,8 @@ Write in the language of the request. Keep product names as the user writes them
 
 This is where drafts fail most. A post should read like a dev texting a friend about something they made, not like a product page.
 
-- Casual and plain. Lowercase bullets, no periods. A small slip in grammar is fine. One emoji, usually at the end: 👀 for "look at this", 😭 or 🙃 for honest pain, 👇 when more is in the replies.
+- Casual and plain. Short lines of prose, mostly lowercase, few periods. A small slip in grammar is fine. One emoji, usually at the end: 👀 for "look at this", 😭 or 🙃 for honest pain, 👇 when more is in the replies.
+- Prose is the default shape. Save a list for content that is a true list: ranked numbers in a data post, or steps in a value post or thread.
 - Say what the reader gets, in the words the reader would use. Never use the product's internal terms, your own spec's labels, or a list of its mechanics.
 - No clever lines: no wordplay, no meta jokes ("this tweet was written by..."), no setup-punchline hooks. Clever reads as trying.
 - No ad words, no model words: delve, leverage, unlock, seamless, empower, supercharge, game-changer, robust, "excited to share", "let's dive in", "here's the thing".
@@ -50,23 +51,21 @@ Collect the facts the post stands on: what it does, a before and after or output
 
 Use one format for every variant, so the user compares hooks, not structures.
 
-**Launch.** The first line is a flat fact about a pain every reader has seen, or a plain belief about what their agent should be able to do. Then the name, an optional one-line "what it is", and three bullets.
+**Launch.** Four or five short lines of prose, the way you would tell a friend. The first line is a flat fact about a pain every reader has seen, or a plain belief about what their agent should be able to do. Then the name and what it does, in one sentence. Then one sentence of proof, then the close.
 
 ```
 {Every X has the same Y.} or {Your agent should be able to Z}
 
-Introducing {name}   (or: So I built {name}, {what it is})
+So I built {name}. {what it does}   (or: Introducing {name}, {what it does})
 
-{optional: one line, what it does}
+{proof: a count or names, and how little work it takes: "207 presets, and you switch in 1 line"}
 
-- {a count or a list of names: "207 presets", "E2B, Daytona, Vercel and more"}
-- {how little work: "switch in 1 line", "React, Vue, Svelte or plain HTML"}
-- {the agent angle: "or ask your agent to add it", "includes an agent skill"}
+{optional, the agent angle: "or just ask your agent to add it"}
 
 and it's open source 👀
 ```
 
-The bullets are things you can count or name, never adjectives. Keep the open-source line only when it is true; "{n} free, all customizable 👀" is the same close for a free tier. Always attach a video or image of the thing working. Example, for an invented product: "Every PDF parser breaks on tables / Introducing pdfkit / - 40 file types / - tables and scans in 1 call / - includes an agent skill for setup / and it's open source 👀".
+The proof is things you can count or name, never adjectives, written into a sentence. Keep the open-source line only when it is true; "{n} free, all customizable 👀" is the same close for a free tier. Always attach a video or image of the thing working. Example, for an invented product: "Every PDF parser breaks on tables / So I built pdfkit. It reads tables and scans in 1 call / 40 file types, and it comes with an agent skill for setup / and it's open source 👀".
 
 **Data.** Name what was measured and how many. Then a ranked list with the real numbers. End by pointing at the rest.
 
@@ -129,7 +128,7 @@ A single post fits without "Show more". A value post may run long when every poi
 Check each variant before you show it. Rewrite until all pass; after two failed rewrites, drop it and write a new one. Do not print the checks.
 
 1. **Stranger.** A reader who has never heard of the author still gets something they want.
-2. **Reader's words.** Every bullet says what the reader gets, in words they would use. No internal terms.
+2. **Reader's words.** Every line says what the reader gets, in words they would use. No internal terms.
 3. **Person.** Read aloud, it sounds like a dev talking, not an ad, a model, or a clever copywriter.
 4. **Proof.** Every number, price, and comparison came from the user. You added none.
 5. **Skim.** Short lines. No paragraph over two lines, except the "why" in a value post.
