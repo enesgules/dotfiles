@@ -1,7 +1,7 @@
 # Mitchell Hashimoto (mitchellh): code-review research
 
-Research date: 2026-10-30. Weighting: late 2025 to Oct 2026 highest.
-Main corpus: about 90 ghostty-org/ghostty PRs he reviewed (reviews, inline comments, conversation comments, pulled with `gh api`), his own recent PR bodies, the contribution docs he wrote, his blog, and HN comments.
+Research date: 2026-10-30, refreshed 2026-11-26 (see the last section). Weighting: 2025-11-26 to 2026-11-26 highest.
+Main corpus: about 90 ghostty-org/ghostty PRs he reviewed in the first pass, plus 533 comments and review bodies on 424 PRs (2025-11-26 to 2026-11-25) in the refresh (reviews, inline comments, conversation comments, pulled with `gh api`), his own recent PR bodies, the contribution docs he wrote, his blog, and HN comments.
 Every quote below is verbatim (I kept original typos such as "its", "lets", "draggign"). Inline links point to the exact review or comment. "Inference" marks my own reading.
 
 Link key: `PR#N r` = review (`#pullrequestreview-ID`), `d` = inline diff comment (`#discussion_rID`), `c` = conversation comment (`#issuecomment-ID`).
@@ -13,7 +13,7 @@ Link key: `PR#N r` = review (`#pullrequestreview-ID`), `d` = inline diff comment
 - **libghostty / libghostty-vt is the main technical work.** In the Ghostty 1.4 HN thread (2026-10-27) he wrote: "I plan on tagging libghostty 1.0 in the next few months and declaring ABI stability at that point!" ([HN](https://news.ycombinator.com/item?id=50262760)). In the same comment: "Libghostty powers all JetBrains IDE terminals, over 12.5 million active users." It also says libghostty is built and tested in CI for Apple platforms, Windows, Linux, FreeBSD, Android, WASM, and freestanding targets.
   - His own PRs, Sep to Oct 2026: FreeBSD support ([#14867](https://github.com/ghostty-org/ghostty/pull/14867), 10-27), `vt_write_until` ([#14802](https://github.com/ghostty-org/ghostty/pull/14802), 10-21), Kitty graphics moved into RenderState ([#14789](https://github.com/ghostty-org/ghostty/pull/14789), [#14780](https://github.com/ghostty-org/ghostty/pull/14780)), terminal search API ([#14097](https://github.com/ghostty-org/ghostty/pull/14097)), and memory cuts per terminal ([#14130](https://github.com/ghostty-org/ghostty/pull/14130), [#14137](https://github.com/ghostty-org/ghostty/pull/14137), [#14138](https://github.com/ghostty-org/ghostty/pull/14138), early Sep 2026).
 - **Security hardening of the VT/terminal input surface (Oct 2026).** Escape injection through directory names ([#14859](https://github.com/ghostty-org/ghostty/pull/14859)), hostile tmux layouts ([#14858](https://github.com/ghostty-org/ghostty/pull/14858)), u16 row overflow ([#14856](https://github.com/ghostty-org/ghostty/pull/14856)), use-after-free when scrollback prunes ([#14686](https://github.com/ghostty-org/ghostty/pull/14686)), untrusted links and paths on macOS ([#14683](https://github.com/ghostty-org/ghostty/pull/14683), [#14688](https://github.com/ghostty-org/ghostty/pull/14688)), and paste protection ([#14679](https://github.com/ghostty-org/ghostty/pull/14679), [#14687](https://github.com/ghostty-org/ghostty/pull/14687)).
-- **Ghostty 1.4 shipped 2026-10-27** (commit "Bump version to 1.4.0"). Releases come every 6 months: "We run on a 6 month release cycle" ([HN, 2026-10-07](https://news.ycombinator.com/item?id=49996923)). After the release he started CI speed work: "Test on main takes over an hour and I'm tired of it." ([#14911](https://github.com/ghostty-org/ghostty/pull/14911), 2026-10-28).
+- **Ghostty 1.4 shipped 2026-10-27** (commit "Bump version to 1.4.0" ([83fb95624b](https://github.com/ghostty-org/ghostty/commit/83fb95624b0439ee660c2679b43b38c8b63769cd))). Releases come every 6 months: "We run on a 6 month release cycle" ([HN, 2026-10-07](https://news.ycombinator.com/item?id=49996923)). After the release he started CI speed work: "Test on main takes over an hour and I'm tired of it." ([#14911](https://github.com/ghostty-org/ghostty/pull/14911), 2026-10-28).
 - **New terminal protocol: OSC 7501 Program Status** (spec plus [blog, 2026-10-06](https://mitchellh.com/writing/program-status-osc7501); PRs [#14560](https://github.com/ghostty-org/ghostty/pull/14560), [#14630](https://github.com/ghostty-org/ghostty/pull/14630)). The blog says it "emerged from my work on Superlogical and Ghostty".
 - **Superlogical, his new company** ([blog, 2026-07-29](https://mitchellh.com/writing/superlogical)). It ships a terminal multiplexer first: "We will build on libghostty exactly as it was designed to be used: as a public building block for terminal applications." He also mentioned "a fully supported Swift framework for macOS and iOS on top of libghostty-vt" that Superlogical will maintain ([#13767 c](https://github.com/ghostty-org/ghostty/pull/13767#issuecomment-5272194278), 2026-08-12).
 - **Moving Ghostty off GitHub** ([blog, 2026-04-28](https://mitchellh.com/writing/ghostty-leaving-github)): "This is no longer a place for serious work if it just blocks you out for hours per day, every day." Inference: on 2026-10-30 the GitHub repo still takes PRs and merges every day, so the migration is not finished yet.
@@ -143,7 +143,7 @@ Link key: `PR#N r` = review (`#pullrequestreview-ID`), `d` = inline diff comment
 
 **Shape of a typical review (inference from about 90 PRs):**
 - Short. A review body is often one to three sentences. Inline comments are often one line. On complex PRs he writes a short opening, then a numbered or bulleted list of structural problems, then "not an exhaustive list". Small PRs he trusts get an empty approval.
-- He uses the red "Request changes" state as a merge block and says so: "Just gonna throw a red on here because I want to consider the config syntax." ([#10776 r](https://github.com/ghostty-org/ghostty/pull/10776#pullrequestreview-3811609064)), "Just marking red until Pluie's feedback is addressed. Otherwise looks good." ([#12427](https://github.com/ghostty-org/ghostty/pull/12427))
+- He uses the red Request changes state as a merge block and says so: "Just gonna throw a red on here because I want to consider the config syntax." ([#10776 r](https://github.com/ghostty-org/ghostty/pull/10776#pullrequestreview-3811609064)), "Just marking red until Pluie's feedback is addressed. Otherwise looks good." ([#12427](https://github.com/ghostty-org/ghostty/pull/12427))
 - He states his preferences openly: "I'd prefer", "I think", "I don't love", "Red flag", "sus", "Nit:", "Bikeshed,". He asks questions with "Why this?", "Is this required?", "Do we need this anymore?".
 - He says when he is unsure and when he has not finished the review: "I have to look more closely, but…", "I don't understand the context enough to judge it completely yet." ([#11969 r](https://github.com/ghostty-org/ghostty/pull/11969#pullrequestreview-4031550000)). He admits mistakes: "Okay, I'm wrong!"
 - He reports status in a few words: "Real test failure.", "There's a test failure.", "Rebase pleas then I'll review again. Thanks!"
@@ -164,7 +164,7 @@ Link key: `PR#N r` = review (`#pullrequestreview-ID`), `d` = inline diff comment
 12. "I'll give an honest review in an attempt to be fair in how the real world would review this" ([#12068 r](https://github.com/ghostty-org/ghostty/pull/12068#pullrequestreview-4052932442))
 
 **How he asks for changes:**
-- He gives the concrete alternative design, not only "this is wrong". Examples: "make surfaces have a free-path that isn't through deinit (but is idempotent so when deinit is called its safe)" ([#9760 c](https://github.com/ghostty-org/ghostty/pull/9760#issuecomment-5079155115)), "I think we should make this a tagged union with one key today `grid`" ([#14610 d](https://github.com/ghostty-org/ghostty/pull/14610#discussion_r4238858899)), and code snippets with `#if defined(__APPLE__)` platform macros ([#11639 d](https://github.com/ghostty-org/ghostty/pull/11639#discussion_r2965975360)).
+- He gives the concrete alternative design, not only a statement that the code is wrong. Examples: "make surfaces have a free-path that isn't through deinit (but is idempotent so when deinit is called its safe)" ([#9760 c](https://github.com/ghostty-org/ghostty/pull/9760#issuecomment-5079155115)), "I think we should make this a tagged union with one key today `grid`" ([#14610 d](https://github.com/ghostty-org/ghostty/pull/14610#discussion_r4238858899)), and code snippets with `#if defined(__APPLE__)` platform macros ([#11639 d](https://github.com/ghostty-org/ghostty/pull/11639#discussion_r2965975360)).
 - He gives the reason behind a design rule. Example: tmux output is not unescaped on purpose to save CPU ([#14273](https://github.com/ghostty-org/ghostty/pull/14273#pullrequestreview-5259190671)).
 - He says when a point is not blocking: "I don't care for this PR, but as a general statement, …" ([#9134 d](https://github.com/ghostty-org/ghostty/pull/9134#discussion_r2423148969)), "There's some stylistic Zig stuff here I want to fix but willing to do later." ([#11711 r](https://github.com/ghostty-org/ghostty/pull/11711#pullrequestreview-3992704782)), "Its a micro on micro optimization but…" ([#14625 d](https://github.com/ghostty-org/ghostty/pull/14625#discussion_r4241806654)).
 
@@ -185,7 +185,7 @@ Link key: `PR#N r` = review (`#pullrequestreview-ID`), `d` = inline diff comment
 - **Agents that open issues or PRs.** AGENTS.md says "Never create a PR." and, if asked, the agent must add a file that says "I am a sad, dumb little AI driver with no real skills." ([AGENTS.md](https://github.com/ghostty-org/ghostty/blob/main/AGENTS.md))
 - **Broken PRs that need major rework.** "It isn't a maintainers job to review a PR so broken that it requires significant rework to be acceptable." ([HACKING.md](https://github.com/ghostty-org/ghostty/blob/main/HACKING.md)). Also: "None of this looks right sorry. I can't provide a useful review because almost all of it is wrong." ([#11537 r](https://github.com/ghostty-org/ghostty/pull/11537))
 - **Unrequested PRs.** "Pull requests should be associated with a previously accepted issue." ([CONTRIBUTING.md](https://github.com/ghostty-org/ghostty/blob/main/CONTRIBUTING.md))
-- **"Slap it everywhere" changes.** "We shouldn't just slap this everywhere." ([#10189 r](https://github.com/ghostty-org/ghostty/pull/10189#pullrequestreview-3632647259))
+- **Changes that slap a fix everywhere.** "We shouldn't just slap this everywhere." ([#10189 r](https://github.com/ghostty-org/ghostty/pull/10189#pullrequestreview-3632647259))
 - **Boilerplate as a smell.** "The extra 5 lines of boilerplate (array list init + 4 line defer) is also a huge code smell to me that something is funky here" ([#11969 r](https://github.com/ghostty-org/ghostty/pull/11969#pullrequestreview-4031550000))
 - **Generic wrappers before there is a need.** ([#10328](https://github.com/ghostty-org/ghostty/pull/10328#pullrequestreview-3666021526))
 - **Compatibility shims before 1.0.** "I decided to remove the old `ghostty_terminal_vt_write_until_ground` instead of having a shim" ([#14802](https://github.com/ghostty-org/ghostty/pull/14802)). "We can just break compatibility at the moment" ([#13285 r](https://github.com/ghostty-org/ghostty/pull/13285#pullrequestreview-4676285796))
@@ -201,7 +201,7 @@ Each item names its Ghostty source. The translation to other stacks is my infere
 3. **One lifecycle path.** Use one idempotent teardown or cleanup path, not a new `forceClose()` per bug. In a web app: one place for unsubscribe/abort/dispose per resource. (#9760, #14444)
 4. **Public interfaces are commitments.** Count each new exported type, endpoint, prop, or event as a long-term cost. Prefer a small, generic, extensible shape (discriminated union, `kind` field) over one callback per protocol or feature. In TypeScript: a discriminated union event type instead of `onKittyDnd`, `onOsc52`, and so on. (#14511, #13182, #14610)
 5. **Separate the supported API from internals.** Do not grow internal modules because a downstream user wants them. Name internal things so that nobody thinks they are public. (#13767, #12214)
-6. **Know the hot path and protect it.** For changes on the critical path (render loop, request middleware, per-row list rendering, serialization), ask for a before/after benchmark against a baseline. Ask for "no measurable change" evidence too, not only gains. (#14552, #10465, #14138)
+6. **Know the hot path and protect it.** For changes on the critical path (render loop, request middleware, per-row list rendering, serialization), ask for a before/after benchmark against a baseline. Ask for "no noticeable change" evidence too, not only gains. (#14552, #10465, #14138)
 7. **Do not pay for work nobody asked for.** Use early exits when there is no consumer, lazy decoding, and no allocation or fetch when the result is not read. Do not keep retained buffers "for performance" without data. (#14273, #13332, #13930)
 8. **A regression test must fail without the fix.** Make code testable by passing in dependencies (writers, clocks, env), not by mutating globals in tests. Test the artifact the way consumers use it. (#14262, #10905, #14447)
 9. **Test error paths on purpose.** Use fault injection for cleanup and rollback code. It almost never runs and it is where leaks and corruption hide. (Tripwire post)
@@ -258,7 +258,7 @@ Each item names its Ghostty source. The translation to other stacks is my infere
 - [Data before changing design](https://news.ycombinator.com/item?id=46570153)
 
 **Interviews and secondary sources:**
-- [The Pragmatic Engineer interview (2026-02-25)](https://newsletter.pragmaticengineer.com/p/mitchell-hashimoto). Quotes extracted with a fetch tool; I did not check them against the original: "If I'm coding, I want an agent planning. If they're coding, I want to be reviewing." and "Now it's just default deny."
+- [The Pragmatic Engineer interview (2026-02-25)](https://newsletter.pragmaticengineer.com/p/mitchell-hashimoto). Checked against the page on 2026-11-26 (the page uses curly apostrophes): "If I'm coding, I want an agent planning. If they're coding, I want to be reviewing." and "Now it's just default deny."
 - [Fragmented podcast ep. 310 (Apr 2026)](https://fragmentedpodcast.com/tags/mitchell-hashimoto/). Not listened to.
 - [Simon Willison on Vouch](https://simonwillison.net/2026/Feb/7/vouch/)
 - [The Register on Superlogical](https://www.theregister.com/a/5281970)
@@ -277,3 +277,116 @@ Source: 78 of his own X posts, 2026-08-11 to 2026-11-03, read through the fxtwit
 - Differential tests (2 posts): "For the pty stream we assert byte equality." (https://x.com/mitchellh/status/2090893729469268109)
 - Agent over-reach: "Codex decided the best path forward was to implement an unauthenticated network API to every server to shut itself down." (https://x.com/mitchellh/status/2089446702285758559)
 - Not adopted: "full forwards+backwards API compatibility with clients and servers" for Rex (https://x.com/mitchellh/status/2112286460309364845). It conflicts with this repo's rule against backward compatibility.
+
+---
+
+## Update 2026-11-26: last-year refresh (2025-11-26 to 2026-11-26)
+
+Sources added:
+- GitHub: `search/issues?q=reviewed-by:mitchellh -author:mitchellh` in three date slices gave 424 of 524 PRs (one search page failed on a rate limit). GraphQL gave his reviews, inline comments, and conversation comments on each: 533 items dated 2025-11-26 to 2026-11-25, 254 of them longer than 30 characters on PRs that the sections above did not cite. Repos: ghostty-org/ghostty (412 PRs), mitchellh/vouch, ghostty-org/ghostling, mitchellh/libxev, nushell/nushell, nushell/reedline, simdutf/simdutf, ziglang/zig.
+- X: 23 posts, 2026-11-03 to 2026-11-25 (fxtwitter timeline).
+- HN: 68 comments, 2025-11-07 to 2026-10-27 (Algolia). None after 2026-10-27.
+- Blog: [Libghostty 1.0 (2026-11-06)](https://mitchellh.com/writing/libghostty-1-0).
+- Bluesky: the account `mitchellh.com` exists, but the author feed returns 0 posts. Still open: the Fragmented podcast (no transcript found).
+
+Current focus, update:
+- libghostty-vt 1.0 shipped 2026-11-06 with an ABI promise: "Every object is an opaque handle." and "Our CI enforces our ABI policy." ([blog](https://mitchellh.com/writing/libghostty-1-0)). Point releases 1.0.1 (2026-11-11) and 1.0.2 (2026-11-24) followed.
+- How Superlogical works: "First, everyone is trusted to push to main. We do machine-aided code review pre-push and human plus more machine-aided code review post-push. Limited to no PRs." ([X](https://x.com/mitchellh/status/2120221244478083249)). Also: "We use AI of course, but showing the difference between tasteless prompting and a team of experienced craftspeople enhanced by AI." ([X](https://x.com/mitchellh/status/2121681502316757065))
+- Benchmarks must measure the claim: "So the plain ASCII/Unicode improvements here do NOT translate to visible `cat` speed differences." ([X](https://x.com/mitchellh/status/2117667382605005263)). On a third-party benchmark: "I'd prefer you ran it yourself." ([HN](https://news.ycombinator.com/item?id=49151024))
+
+New review evidence by theme (verbatim, typos kept):
+
+**Use what the codebase already has (types, iterators, modules)**
+- "We should use a rectangular selection type instead of this, since we already have it." ([#14483 d](https://github.com/ghostty-org/ghostty/pull/14483#discussion_r4154556276))
+- "I think if we use a rectangular selection type we have iterators we can use here." ([#14483 d](https://github.com/ghostty-org/ghostty/pull/14483#discussion_r4154557569))
+- "We have a "standard" libghostty string type in `src/lib/string.zig` (we use for libghostty-vt). We should probably restandardize on that." ([#11922 d](https://github.com/ghostty-org/ghostty/pull/11922#discussion_r3004980420))
+- "I think we should move the contents of lab.zig to `src/terminal/color.zig` and then add a function to `terminal.color.Palette` itself that can generate itself from the 16 values." ([#10554 r](https://github.com/ghostty-org/ghostty/pull/10554#pullrequestreview-3746270183))
+- "We should move this to src/datastruct since its a data structure. We can maintain it." ([#12726 d](https://github.com/ghostty-org/ghostty/pull/12726#discussion_r3619114967))
+
+**Inline one-use helpers, test helpers too**
+- "Remove this helper and just inline, I prefer to avoid test helpers when we can (we have them of course, I just TRY To avoid them and this is an easy one to avoid)." ([#14483 d](https://github.com/ghostty-org/ghostty/pull/14483#discussion_r4154548244))
+- "Instead of introducing a helper here, just inline this directly, but put in the comment why we use binding cmparisons." ([#15318 d](https://github.com/ghostty-org/ghostty/pull/15318#discussion_r4667294149))
+
+**One interface for all cases, not per-case branches or new flags**
+- "Rather than this ball of comptime, I'd be more supportive of making all libraries take allocators and all discoveries take libraries and having them ignore it if they don't use it." ([#12386 d](https://github.com/ghostty-org/ghostty/pull/12386#discussion_r3131209058))
+- "We should reuse the `emit-xcframework` and not introduce a new flag (just have it semantically affect lib vt too)" ([#12267 r](https://github.com/ghostty-org/ghostty/pull/12267#pullrequestreview-4164058600))
+- "I think it'd be cleaner to do `case stable(version: String)` and `case tip(commit: String?)` and then make `var url: URL?` a computed var (that could yield nothing)." ([#12007 d](https://github.com/ghostty-org/ghostty/pull/12007#discussion_r3013131602))
+
+**Reference behavior: get the spec or the reference source and match it case by case**
+- "Can you include a reference link to whre xterm implements this, so I can compare the impl by eye" ([#14483 d](https://github.com/ghostty-org/ghostty/pull/14483#discussion_r4154561686))
+- "If Kitty doesn't do this then we shouldn't either. Did we verify what Kitty does?" ([#12226 d](https://github.com/ghostty-org/ghostty/pull/12226#discussion_r3068513408))
+- "Let's test this and see if we can do the same." ([#12226 c](https://github.com/ghostty-org/ghostty/pull/12226#issuecomment-4230084313)) He pasted the xterm `input.c` source and a behavior table first.
+- "This test should pass:" ([#12375 r](https://github.com/ghostty-org/ghostty/pull/12375#pullrequestreview-4163787071)) He quoted the OpenType spec ("From the spec") and wrote the failing test.
+- "Note I did pull down the tmux source code and verified the end 3-tuple will always match the begin 3-tuple" ([#11597 r](https://github.com/ghostty-org/ghostty/pull/11597#pullrequestreview-3961928990))
+- "Just marking red for me, i want to do a more in depth analysis to make sure this behavior matches xterm properly." ([#15309 r](https://github.com/ghostty-org/ghostty/pull/15309#pullrequestreview-6016291339))
+- "Restore cursor has bugs on a lot of terminals so I don't we should use DECSC/RC." ([#15248 r](https://github.com/ghostty-org/ghostty/pull/15248#pullrequestreview-6030479354))
+
+**The core stays generic; policy and presentation live in the consumer (apprt)**
+- "We should gate this at the apprt, not in the core. We still want progress reports to be sent to the apprt, but the apprt should respect the style of how it is shown." ([#11289 d](https://github.com/ghostty-org/ghostty/pull/11289#discussion_r2912811899))
+- "Do we need this core stuff at all? I think it might be cleaner to just implement this 100% in the apprt." ([#9937 d](https://github.com/ghostty-org/ghostty/pull/9937#discussion_r2627751342))
+- "I still don't like this, is this really necessary? Why can't the GTK side cone the config and override this on the config structure itself? That's what apprt/embedded (for macOS) does." ([#10809 d](https://github.com/ghostty-org/ghostty/pull/10809#discussion_r2885590482))
+- "removed the core surface changes. I don't think the core changes were necessary for this fix." ([#11276 r](https://github.com/ghostty-org/ghostty/pull/11276#pullrequestreview-3923912962))
+- "I moved our readonly blocking to all write requests to termio rather than scatter it across Surface.zig" ([#9130 r](https://github.com/ghostty-org/ghostty/pull/9130#pullrequestreview-3573751745))
+
+**Names: keep the general name free**
+- "I can see "checksum" in general being overloaded and more valuable (it probably is already overloaded in snapshots for example) and I don't want to reserve the general checksum for this compatibility edge case." ([#14483 d](https://github.com/ghostty-org/ghostty/pull/14483#discussion_r4154568842))
+
+**Tests: at the owning layer, always run, CI or it rots**
+- "we should add a test to Terminal.zig too though that's the more appropriate place for this since the C tests are only run conditionally." ([#12581 r](https://github.com/ghostty-org/ghostty/pull/12581#pullrequestreview-4223494199))
+- "Its fine, I don't mind duplicate tests that test at different layers." ([#12581 r](https://github.com/ghostty-org/ghostty/pull/12581#pullrequestreview-4223618198))
+- "You can remove this test, `semantic_prompt_boundary` is well tested and this test isn't even in the rright place." ([#12435 d](https://github.com/ghostty-org/ghostty/pull/12435#discussion_r3142235605))
+- "We should add unit tests for this, that's why `execCommand` is pulled out as its own function." ([#12389 r](https://github.com/ghostty-org/ghostty/pull/12389#pullrequestreview-4162929197))
+- "Are there unit tests that cover discovery on Windows? If not, please add them. Surely Windows has standard fonts we can rely on to test discovery." ([#12386 r](https://github.com/ghostty-org/ghostty/pull/12386#pullrequestreview-4162891014))
+- "In order for this to be reliable, we need to find a way to run it in CI. Otherwise, I think it'll bit rot." ([#9185 r](https://github.com/ghostty-org/ghostty/pull/9185#pullrequestreview-3683369514))
+- "This needs to be added to the big list at the top of required tests to pass." ([#14076 d](https://github.com/ghostty-org/ghostty/pull/14076#discussion_r3897783529))
+- "We need a test to validate this." ([mitchellh/libxev#209 r](https://github.com/mitchellh/libxev/pull/209#pullrequestreview-3867999844))
+
+**Comments say why, for the reader years later**
+- "Can you add a comment here just explaining this. Its obvious with the PR context but I suspect years down the road will be less obvious what this one line is helping with." ([#10454 d](https://github.com/ghostty-org/ghostty/pull/10454#discussion_r2729173523))
+- "Improve this comment to explain what the param alloc is used for." ([#14076 d](https://github.com/ghostty-org/ghostty/pull/14076#discussion_r3890510974))
+
+**Benchmarks: measure what the claim is about; small deltas are noise**
+- "I'd consider anything less than 1% as noise, mostly." ([#12726 c](https://github.com/ghostty-org/ghostty/pull/12726#issuecomment-5029898418))
+- "There's a good chance the small ones (like the 3% changes) are the actual benchmark harness and not the impl itself" ([#12726 c](https://github.com/ghostty-org/ghostty/pull/12726#issuecomment-5029898418))
+- "the state is stale but the steady-state FPS that doom fire reports _is accurate_." ([#13236 c](https://github.com/ghostty-org/ghostty/pull/13236#issuecomment-4906674971))
+- "I'm willing to merge this as-is since we have no measurement on Linux anyways, but it'd be nice to get before/after on large ascii/unicode/doom fire results. too." ([#13236 c](https://github.com/ghostty-org/ghostty/pull/13236#issuecomment-4906651134))
+- "Verified myself, note that in my own benchmarks invalid UTF8 regressed quite significantly with this (but is correctly handled now)." ([#15156 r](https://github.com/ghostty-org/ghostty/pull/15156#pullrequestreview-5821740054))
+- "General note: `print` is one of our most performance sensitive pieces of code, but this is specifically in the `width == 0` branch which is not common, so adding more logic here is fine." ([#12581 r](https://github.com/ghostty-org/ghostty/pull/12581#pullrequestreview-4223618198))
+
+**Lifecycle, ownership, and safety limits**
+- "We probably need to remove the observer on deinit, yeah?" ([#10943 d](https://github.com/ghostty-org/ghostty/pull/10943#discussion_r2838520921))
+- "We should probably move this to below the timer removal and also ensure that the progress bar gets removed too (if it might exist). That way this behaves better with live config reload." ([#11289 d](https://github.com/ghostty-org/ghostty/pull/11289#discussion_r2915508944))
+- "I'd toss all this memory management and create an arena for all this." ([#10809 d](https://github.com/ghostty-org/ghostty/pull/10809#discussion_r2886272385))
+- "I would use a smaller number here that is more aligned with safety." ([#13654 d](https://github.com/ghostty-org/ghostty/pull/13654#discussion_r3724451284))
+- "i think we shoudl use an `inline` here and do a [comptime possible?] assert that its not in our modes list so that we never permanently reset a mode we actually support." ([#14672 d](https://github.com/ghostty-org/ghostty/pull/14672#discussion_r4259410953))
+
+**Understanding and AI-written work**
+- "I can't merge code I don't understand (or, for purposes I don't understand)." ([mitchellh/vouch#39 c](https://github.com/mitchellh/vouch/pull/39#issuecomment-3869373900))
+- "But that's not what the logs show? Why do the logs show the value being passed in?" ([mitchellh/vouch#39 c](https://github.com/mitchellh/vouch/pull/39#issuecomment-3869362355))
+- "There's a bunch of unrelated changes and I'm not convinced there is true understanding here. It looks like some dart throwing with AI for both points." ([mitchellh/vouch#39 c](https://github.com/mitchellh/vouch/pull/39#issuecomment-3872035876))
+- "Note there was a lot of slop here. The general shape of it was right (which AI is good at) but some of the details were way off, including multiple bugs." ([#9415 r](https://github.com/ghostty-org/ghostty/pull/9415#pullrequestreview-3816240499))
+- "please make your PR descriptions like 90% shorter. AI likes talking a lot but most of what it says is completely worthless." ([#11977 r](https://github.com/ghostty-org/ghostty/pull/11977#pullrequestreview-4031733686))
+- "can you please explain (for both me and the history) the motivation behind this, the pros and cons compared to manual cgroup management, etc." ([#10611 r](https://github.com/ghostty-org/ghostty/pull/10611#pullrequestreview-3815512814))
+
+**Debug code and log cost**
+- "Only change I'd like to request is to either remove the debug stuff or move it to a function that we don't call" ([#9883 r](https://github.com/ghostty-org/ghostty/pull/9883#pullrequestreview-3583694153))
+- "Logs are already a pretty impactful part of our performance and I write debug logs with the expectation they won't be in the final binary" ([#8815 r](https://github.com/ghostty-org/ghostty/pull/8815#pullrequestreview-3579874997))
+- "We should guard this with a `comptime std.log.logEnabled(.debug, scope)` so that this gets completely optimized away in release." ([#10491 d](https://github.com/ghostty-org/ghostty/pull/10491#discussion_r2743118654))
+
+**Proportion: what he accepts (calibration for severity)**
+- "This is pretty hacky but willing to accept it because its VERY tightly scoped and the conditional is based on unlikely factors so its unlikely to affect input latency." ([#12447 r](https://github.com/ghostty-org/ghostty/pull/12447#pullrequestreview-4175863882))
+- "I think worst case if there are bugs a mouse event or two gets missed but if it works t works." ([#11167 r](https://github.com/ghostty-org/ghostty/pull/11167#pullrequestreview-3891428178))
+- "we're not making any persistence guarantees about them so we can change the format at anytime as long as its 64-bits." ([#12027 r](https://github.com/ghostty-org/ghostty/pull/12027#pullrequestreview-4039723946))
+- "Changing tests are low risk for release. Feel free to merge." ([#11180 r](https://github.com/ghostty-org/ghostty/pull/11180#pullrequestreview-3893650164))
+- "Approved pending CI, milestoned to 1.4 since this is technically breaking." ([#12443 r](https://github.com/ghostty-org/ghostty/pull/12443#pullrequestreview-4175849147))
+- "This is a good approach and how we started macOS too. It’s a good way. We can remove it later." ([#12386 c](https://github.com/ghostty-org/ghostty/pull/12386#issuecomment-4305069077))
+
+**Agent-written comments (marked)**
+- "I did find one regression, so I pushed a commit on top to fix it along with a few small things." ([#15111 c](https://github.com/ghostty-org/ghostty/pull/15111#issuecomment-6690587799)) Inference: the rest of this comment ("What I changed:" list, benchmark table) reads agent-written. Do not use its wording as his voice.
+- "EDIT: lol I slopped myself while sending Codex on a research task. Sorry :P" ([#11009 r](https://github.com/ghostty-org/ghostty/pull/11009#pullrequestreview-3855467170)) He says the earlier text of this review was agent output.
+
+Changes of mind and limits found in the refresh:
+- Duplicate tests are fine when they test different layers (#12581 above). The seat must not flag a second test at another layer as noise.
+- Nothing in the last year contradicts a standard in SKILL.md. The rule that a public surface is a commitment moved to the Armin seat on 2026-10-30 (lane decision, not a change of mind).
+
+Replay 2026-11-26 (blind runs of SKILL.md on his real reviews; scores in the refresh report): ghostty#14483, #12386, #13333 (training), #11557, #13265 (held out). Misses that drove edits: reuse of an existing type and its iterators, one-use test helpers, a link to the reference implementation, a generic name for a special case, and unclear comments.
