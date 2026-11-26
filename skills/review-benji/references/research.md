@@ -1,8 +1,9 @@
 # Benji Taylor: research for a design-review seat
 
-- Research date: 2026-11-03
+- Research date: 2026-11-03, refreshed 2026-11-26 (see "Update 2026-11-26" at the end)
 - Weighting: late 2025 to Nov 2026 has the highest weight (X posts from Mar–Oct 2026, the Stageshow skill and essay from 31 Oct 2026, Drawesome, Liveline, Agentation). Family Values (Jul 2024) and Honkish (May 2025) are older, but they are his only long statements of product-design principles, so they carry the core values.
 - Corpus: all 8 essays on benji.org; 40+ of his X posts, read verbatim through the public fxtwitter API (the x.com pages block automated reads); all 4 public GitHub repos (`benjitaylor/skills`, `benjitaylor/agentation`, `benjitaylor/liveline`, `benjitaylor/drawesome`), including the full Stageshow `SKILL.md` and its `craft.md`, `motion.md`, `framing.md`, `review.md`, `verify.md` and `teaching.md` references; his GitHub issue comments; news coverage of the X hire (CoinDesk, The Block, ForkLog); posts.design and superx.so indexes of his posts.
+- Refresh 2026-11-26 (window 2025-11-26 to 2026-11-26): 155 of his GitHub comments and reviews on 127 issues and PRs (agentation 121, drawesome 2, liveline 2, skills 2; dated 2026-01-22 to 2026-11-05); 26 of his own PRs; 341 of his own X posts (2025-12-03 to 2026-11-24); the Stageshow 1.1.0 and 1.1.1 commits. Bluesky (`benjitaylor.bsky.social`): 0 posts. HN (`benjitaylor`): 0 comments.
 - Not found: podcast interviews, conference talks, Dribbble work, or design write-ups of his Base, Aave or X work. See "Where the evidence is thin" at the end.
 - Convention: every quote is verbatim with its link. My own reading has the label **Inference**.
 
@@ -105,7 +106,7 @@ At X in 2026 he uses the same value:
 
 > "Liveline does one thing: draw a line that moves smoothly as new data arrives. Everything else is opt-in." (https://benji.org/liveline)
 
-On a GitHub pull request that added hover settings to Agentation: "we're not adding settings for now. Closing." (https://github.com/benjitaylor/agentation/pull/192#issuecomment-5771991763)
+On a GitHub pull request that added hover settings to Agentation (posted by script in a batch of 6 comments in 11 seconds; see the 2026-11-26 update): "we're not adding settings for now. Closing." (https://github.com/benjitaylor/agentation/pull/192#issuecomment-5771991763)
 
 ### 2.7 Change management at scale (X era)
 
@@ -396,3 +397,79 @@ Source: 99 of his own X posts, 2026-08-01 to 2026-11-03, read through the fxtwit
 - Rare screens (2 posts): "a screen you see a lot when connecting your Grok Bot to other apps. No more plain black screen!" (https://x.com/benjitaylor/status/2108367328396370074)
 - Motion, for the Emil handoff: he quoted "If it can be animated in code, it probably should be animated in code" and said "more pertinent than ever" (https://x.com/benjitaylor/status/2103647152174162226).
 - Tone: "The reward for making something good is a longer list of things you now know are wrong with it" (https://x.com/benjitaylor/status/2095911324777893999)
+
+---
+
+## Update 2026-11-26: last year of public review work
+
+Window: 2025-11-26 to 2026-11-26. Sources: GitHub search `commenter:benjitaylor` (127 threads), the comments, review comments and reviews on each thread filtered on `user.login == benjitaylor` (155 items), his own PR bodies, 341 of his own X posts through the fxtwitter timeline API, and the Stageshow 1.1.0 commit (https://github.com/benjitaylor/skills/commit/ccb6a382ae0bd3c9bdfc010d7fdfaec23ee2be21).
+
+**Agent-written or scripted comments.** On 2026-09-21 his account posted 60 comments in 4 minutes (07:05 to 07:09 UTC), each in the same release-note register ("Incorporated in #213", "We are keeping this open"). On 2026-09-22 it posted 6 short closing comments in 11 seconds. **Inference:** both batches were drafted or posted by an agent for the Agentation 3.1.0 release. They show his decisions (what stays in scope), but not his own words. They are marked **[scripted]** below. His hand-written comments are from Jan to Mar 2026 and Nov 2026.
+
+### U1. Code reviews with substance (replay cases)
+
+These are the only threads in the window where he reviewed someone else's change with more than one point about it.
+
+- **agentation#82** (self-driving critique skill by Steve Smith), hand-written:
+  > "The empty `catch {}` on the pending drain (line ~659) silently swallows errors. A debug log there would help when things go sideways."
+  > "No check for `agent-browser` being installed. If it's missing you get a confusing error mid-run. Quick preflight check would be nice."
+  > "The launch sequence force-closes any existing browser session. If someone has one open in another terminal, it's gone. Could check first and warn instead?"
+  > "Might be worth adding a troubleshooting note about running `agent-browser close` after interrupting mid-run, since the browser stays open with whatever state it was in."
+  (https://github.com/benjitaylor/agentation/pull/82#issuecomment-3902296083)
+- **agentation#102** (keyboard activation and `inert` by Alex Carpenter), hand-written:
+  > "the toolbar is portaled to `document.body`, so it's last in tab order behind every other focusable element on the page. Makes the Enter/Space activation hard to reach."
+  > "There's already a keyboard shortcut to toggle the toolbar (`Cmd+Shift+F` / `Ctrl+Shift+F`) which covers the activation case. The `inert` improvement is interesting but probably needs a different approach."
+  (https://github.com/benjitaylor/agentation/pull/102#issuecomment-4014857782)
+- **drawesome#8** (host chooses which end the bar folds into), hand-written:
+  > "Testing exposed a couple of existing positioning bugs, particularly with right-side bars and when alignment and minimize direction differ. I've added fixes and browser tests here before merging."
+  (https://github.com/benjitaylor/drawesome/pull/8#issuecomment-5744816698). His fix commit changed the default so that the fold "follows `align`; center uses end" and "dragged bars stay where placed" (README row in the same PR).
+- **agentation#182** (Angular guide) **[scripted]**:
+  > "Agentation does not ship `dist/index.css`, so that import step will fail. We are keeping framework wrappers in separate projects and closing this core docs PR. A corrected guide with a tested Angular example would be welcome as a community resource."
+  (https://github.com/benjitaylor/agentation/pull/182#issuecomment-5756704192)
+- **agentation#192** (two opt-in hover settings) **[scripted]**: "We fixed hover labels escaping the viewport separately. The additional settings and computed-style inspector are outside this release" (https://github.com/benjitaylor/agentation/pull/192#issuecomment-5756703817), then "The truncated hover label was fixed in 3.1, and we're not adding settings for now. Closing." (https://github.com/benjitaylor/agentation/pull/192#issuecomment-5771991763)
+- **agentation#76** (watch tool), one point, hand-written: "If an annotation gets resolved during the window, it won't be returned." and "That way nothing gets lost mid-batch." (https://github.com/benjitaylor/agentation/pull/76#issuecomment-3855494020)
+
+### U2. Patterns in his review decisions
+
+- **Failure keeps the user's work and tells the truth.** Hand-written: "nothing gets lost mid-batch" (above). Scripted, on the 3.1.0 fixes: "keeps feedback when it fails" (https://github.com/benjitaylor/agentation/pull/205#issuecomment-5756693390); "handles fallback failure without clearing feedback or showing success" (https://github.com/benjitaylor/agentation/pull/163#issuecomment-5756696671); "Missing values do not overwrite the clipboard or clear notes." (https://github.com/benjitaylor/agentation/issues/109#issuecomment-5756730154)
+- **Point to the path that already exists before adding one.** "The current toolbar allows for drag and drop anywhere on the screen – are you looking for something else?" (https://github.com/benjitaylor/agentation/pull/52#issuecomment-3801596616); "To prevent this, simply enable 'Block page interactions' in Settings." (https://github.com/benjitaylor/agentation/issues/63#issuecomment-3808342979). Scripted: "Cmd/Ctrl+Shift+F already opens and closes Agentation. We have made that shortcut easier to find in [the documentation]" (https://github.com/benjitaylor/agentation/issues/193#issuecomment-5756722324)
+- **A default instead of an opt-in, when the problem hits everyone.** "\"Block interactions\" is on by default now so clicks don't propagate." (https://github.com/benjitaylor/agentation/issues/65#issuecomment-3854532522)
+- **Keep the core small; a second platform is a separate project.** "No plans for Angular at this time - we're focused on keeping the React package lean." (https://github.com/benjitaylor/agentation/issues/23#issuecomment-3786125288); "Agentation is a desktop dev tool so mobile support isn't a priority right now" (https://github.com/benjitaylor/agentation/pull/117#issuecomment-4014929127); "Since we want to keep Agentation dependency free, going to close this for now." (https://github.com/benjitaylor/agentation/pull/142#discussion_r2961036652); "I left the bar chart feature out for now since it's a bigger addition I want to think through separately." (https://github.com/benjitaylor/liveline/pull/6#issuecomment-4048111481). Scripted: "An extension is outside what we want to maintain in this repo for now" (https://github.com/benjitaylor/agentation/pull/121#issuecomment-5771992404)
+- **Fix the cause at every entry point, not at the place the symptom shows.** "Appreciate the thorough approach of filtering at every sync entry point rather than just at render." (https://github.com/benjitaylor/agentation/pull/95#issuecomment-4014917117)
+- **He tests contributions himself before merging.** "Tested locally, everything works well." (https://github.com/benjitaylor/agentation/pull/76#issuecomment-3857335061); "Tested locally and confirmed it removes the redundant work without changing how the toolbar looks or behaves." (https://github.com/benjitaylor/drawesome/pull/6#issuecomment-5744816609)
+- **Tone.** He thanks first and credits the contributor, also when he closes: "Closing the PR but credit is yours" (https://github.com/benjitaylor/agentation/pull/101#issuecomment-4014636978)
+
+### U3. His own PR bodies
+
+- Liveline states as a feature: "Loading state with breathing line animation, morphs into real chart when data arrives" and "Pause/resume that freezes scrolling and catches up smoothly on unpause" (https://github.com/benjitaylor/liveline/pull/2)
+- Docs spacing pass: "One reading rhythm for the docs site." (https://github.com/benjitaylor/agentation/pull/217)
+
+### U4. X posts, Dec 2025 to Nov 2026 (new since the first pass)
+
+- Scope: "Every feature you don't ship is an equal gift to users" (https://x.com/benjitaylor/status/2008626726209999069); "The best features make it easier to do what people were already doing through hacky workarounds" (https://x.com/benjitaylor/status/2125075539912487260)
+- Trays at X: "In 𝕏, they’ll allow us to keep the underlying product UI simple while still creating advanced features that leverage progressive disclosure." (https://x.com/benjitaylor/status/2070553472488145323)
+- Real context in explainers: "our new Boost tray explainer is fully context-aware, showing the exact post you tapped, its like count, etc." (https://x.com/benjitaylor/status/2062325668969689091)
+- One transition for one kind of object: "Media now opens and closes fluidly, regardless of whether it’s a video, image, profile picture, etc." (https://x.com/benjitaylor/status/2075991745276645644)
+- Parity: "Just like on mobile, it's now easy to show the full post or just the video with attribution." (https://x.com/benjitaylor/status/2107973656098033792)
+- Easy opt-out for a feature that changes who can reach you: "for those who don't want to use it, it's one tap to turn it off" (https://x.com/benjitaylor/status/2102444531463643470)
+- Polish: "Polish isn’t decoration. It’s the accumulated effect of caring about every small thing until the small things stop calling attention to themselves." (https://x.com/benjitaylor/status/2047821411830624267); "At this scale, small things are big things." (https://x.com/benjitaylor/status/2050404134885728305)
+- Dropped frames (for the Emil handoff): "please don't include blurry images of previous work or showcase interaction examples with dropped frames" (https://x.com/benjitaylor/status/2059687953467871683)
+- Rules are taste, not law: "We need to stop talking about product design in absolutes… there are no rules. Everything is made up. Do what makes sense and feels right." (https://x.com/benjitaylor/status/2054959464013590557)
+
+### U5. Stageshow 1.1.0 (4 Nov 2026), new rules
+
+- "When a button's label or icon changes, change it on the same `Button`, which animates it; never swap in a second element" (stageshow/SKILL.md, https://github.com/benjitaylor/skills/commit/ccb6a382ae0bd3c9bdfc010d7fdfaec23ee2be21)
+- "A draft becomes the posted comment in place." (stageshow/references/motion.md, same commit)
+- "Set `poster` first: most people see only that frame (a thumbnail, reduced motion, a screenshot)" (stageshow/SKILL.md, same commit)
+
+### U6. Changed views
+
+- **Rules versus judgment.** The May 2026 posts ("there are no rules", and "“Don’t animate this”… “Only use icons here”… like that’s just your opinion man", https://x.com/benjitaylor/status/2054959881405562926) push against stating design rules as absolutes. Stageshow (Oct 2026) still states hard rules, so he did not drop rules. **Inference:** the seat should justify each finding by what the user loses, not by "the rule says". No standard was removed for this.
+- No other change of view found. The no-settings view holds (hand-written in Jan to Mar, scripted in Sep).
+
+### U7. Failed sources and gaps (2026-11-26)
+
+- His X replies to other people are not in the fxtwitter timeline. Public critiques of specific screens by him were not found, so the replay uses his GitHub reviews only.
+- Most review threads are on his own repos (agentation, drawesome, liveline). No reviews on other people's repos were found.
+- The X bio was read through `https://api.fxtwitter.com/benjitaylor` (the v2 profile endpoint returned 404).
+- CoinDesk blocks automated reads, so its quote ("until October 2025") could not be checked again.

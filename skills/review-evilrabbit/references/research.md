@@ -1,6 +1,6 @@
 # Evil Rabbit (evilrabbit / @evilrabbit_): visual design reviewer research
 
-Research date: 2026-10-30. The research looks mostly at Jun 2025 to Oct 2026. Older material is used only where it still shapes his current work.
+Research date: 2026-11-26 (first pass 2026-10-30). The research looks mostly at Nov 2025 to Nov 2026. Older material is used only where it still shapes his current work. The 2026-11-26 refresh is in "Update 2026-11-26" at the end.
 
 Method:
 - Web: his site evilrabbit.com, the Vercel blog, the Geist docs (vercel.com/geist/*), vercel.com/design, basement.studio posts, the Indent interview (read from the Wayback Machine because the live page gives 404), and the Dive Club podcast (YouTube auto-caption transcript, 51 min).
@@ -20,7 +20,7 @@ How much first-hand material exists: little written material, but more spoken ma
 
 ## 1. Who he is and current focus (with dates)
 
-He is a designer from Buenos Aires who now lives in San Francisco. He is the Founding Designer of ZEIT/Vercel (since 2016) and the person behind the Vercel and ZEIT visual identity. Before that, he was Head of Design (Latin America) at Viacom 2010-2014, Product Designer at Aerolab 2014-2015, and Product Designer at Auth0 2015-2016 ([evilrabbit.com](https://evilrabbit.com)). In 2014 he redesigned Popcorn Time ([popcorn-artworks#3](https://github.com/popcorn-official/popcorn-artworks/issues/3), [podcast 8:30-11:00](https://www.youtube.com/watch?v=WxNGjChnRhE)). vercel.com/design lists him as "Evil Rabbit @ evilrabbit_ Brand Designer USA" ([vercel.com/design](https://vercel.com/design)).
+He is a designer from Buenos Aires who now lives in San Francisco. He is the Founding Designer of ZEIT/Vercel (since 2016) and the person behind the Vercel and ZEIT visual identity. Before that, he was Head of Design (Latin America) at Viacom 2010-2014, Product Designer at Aerolab 2014-2015, and Product Designer at Auth0 2015-2016 ([evilrabbit.com](https://evilrabbit.com)). In 2014 he redesigned Popcorn Time ([popcorn-artworks#3](https://github.com/popcorn-official/popcorn-artworks/issues/3), [podcast 8:30-11:00](https://www.youtube.com/watch?v=WxNGjChnRhE)). vercel.com/design lists him as "Evil Rabbit @ evilrabbit_ Designer USA" ([vercel.com/design](https://vercel.com/design), read 2026-11-26; the first pass read "Brand Designer").
 
 He has no new company. He is still at Vercel. His new title is Head of Creative Studio: "A few months ago, I stepped into the role of Head of Creative Studio, a new team at Vercel focused on shaping the future of our brand." ([X, 2026-09-29](https://x.com/evilrabbit_/status/2105062376575992090)). On the podcast he says that the creative/brand team moved under marketing, and that he reports to both the chief product officer and the CMO ([podcast 27:00-28:00](https://www.youtube.com/watch?v=WxNGjChnRhE)). The team now builds internal tools (generators for OG images, profile pictures, billboards and motion), not single assets: "It's all agentic design, with quality and craft in mind." ([X, 2026-09-29](https://x.com/evilrabbit_/status/2105062670001201169)).
 
@@ -42,18 +42,18 @@ Timeline, newest first:
 | 2026-06-25 | Lifeline first shown: "Fast. Super lean. Just a few KB." | [X](https://x.com/evilrabbit_/status/2070201771226738940) |
 | 2026-06-17 | eve (Vercel's agent framework) launched. His own timeline says "Designed Eve's brand, the framework for building agents." | [lib/evilrabbit.ts](https://github.com/evilrabbit/lifeline/blob/main/lib/evilrabbit.ts), [X](https://x.com/evilrabbit_/status/2067180128786895326) |
 | 2026-04-01 | First Geist Serif prototype shared | [Geist Serif post](https://vercel.com/blog/introducing-geist-serif) |
-| 2026-02-06 | "Introducing Geist Pixel". He is the only author of the post. His timeline says "Directed Geist Pixel" | [vercel.com/blog/introducing-geist-pixel](https://vercel.com/blog/introducing-geist-pixel) |
+| 2026-02-06 | "Introducing Geist Pixel". He is the only author of the post. His timeline data lists it as directed by him | [vercel.com/blog/introducing-geist-pixel](https://vercel.com/blog/introducing-geist-pixel) |
 | 2025 | "v0 Mobile App Design." (his own timeline data) | [lib/evilrabbit.ts](https://github.com/evilrabbit/lifeline/blob/main/lib/evilrabbit.ts) |
 | 2025-05-29 | Geist 1.5.0 (Vercel + basement.studio) | [X](https://x.com/evilrabbit_/status/1927922817573548065) |
 | 2024-11-07 | Geist on Google Fonts | [X](https://x.com/evilrabbit_/status/1854567176545747455) |
-| 2023-10 | Geist Sans and Mono released. His timeline says "Directed Geist" | [lib/evilrabbit.ts](https://github.com/evilrabbit/lifeline/blob/main/lib/evilrabbit.ts) |
+| 2023-10 | Geist Sans and Mono released. His timeline data says "Directed " with a link to Geist | [lib/evilrabbit.ts](https://github.com/evilrabbit/lifeline/blob/main/lib/evilrabbit.ts) |
 | 2022 | "Shipped the Next.js rebrand." and designed the Next.js Conf '22 site. basement.studio (Mateo Zaragoza) drew the Next.js logo | [lib/evilrabbit.ts](https://github.com/evilrabbit/lifeline/blob/main/lib/evilrabbit.ts), [basement.studio](https://basement.studio/post/nextjs-logo-redesign) |
 | 2020-04-21 | ZEIT became Vercel. "We decided to retain our signature triangle logo, although we have simplified it." (Vercel blog; the post does not name an author for the logo) | [vercel.com/blog/zeit-is-now-vercel](https://vercel.com/blog/zeit-is-now-vercel) |
 
 Authorship notes (do not overstate his part):
 - Geist Sans and Mono: "created in collaboration with Basement Studio". Geist Pixel: with Andrés Briganti. Geist Serif: with Andrés Briganti and Mark Davis ([vercel/geist-font README](https://github.com/vercel/geist-font)). He has no commits in vercel/geist-font. His role was direction and, for Serif, the first sketches.
 - People call him the creator of the Vercel logo. I found this only in third-party posts ([X, @extraordinary](https://x.com/extraordinary/status/1844526806730408359)) and in his own words on the podcast about building the triangle brand. No Vercel document credits the logo to him.
-- Third-party prior art: [tylergibbs1/evilrabbitdesin](https://github.com/tylergibbs1/evilrabbitdesin) (created 2026-06-26) is an agent skill made from Geist docs and the Geist Pixel post. It says "He gives almost no interviews." That was true before the Dive Club podcast. It is not true now.
+- Third-party prior art: [tylergibbs1/evilrabbitdesin](https://github.com/tylergibbs1/evilrabbitdesin) (created 2026-06-26) is an agent skill made from Geist docs and the Geist Pixel post. It says "Evil Rabbit gives almost no interviews." That was true before the Dive Club podcast. It is not true now.
 
 ---
 
@@ -61,9 +61,9 @@ Authorship notes (do not overstate his part):
 
 1. **The product must be neutral and stay out of the way.** He learned this from Guillermo Rauch: "when you create a product that feels neutral enough it is transparent" ... "It's not in your face." ([podcast 20:58-21:10](https://www.youtube.com/watch?v=WxNGjChnRhE)). Simplicity was also his first answer in 2024: "Complexity can often lead to confusion and frustration. We believe in keeping things simple." ([Indent](https://web.archive.org/web/20241209202918/https://indent.com/blog/tasting-notes-from-vercel-evil-rabbit)).
 
-2. **Monochrome and dark are the brand. Too much color is a defect.** He describes the "brand keepers" he trained: "Hey, I wouldn't use that much color here. Hey, I would make this more minimal." and "Hey, this is not monochrome enough." Others now say "it's not dark enough" and "too much color." ([podcast 49:00-49:50](https://www.youtube.com/watch?v=WxNGjChnRhE)). His 2024 taste prompt: "Utilize black and white geometric shapes inspired by brutalist architecture, interwoven with elements of Swiss design typography and the Bauhaus style." ([Indent](https://web.archive.org/web/20241209202918/https://indent.com/blog/tasting-notes-from-vercel-evil-rabbit)).
+2. **Monochrome and dark are the brand. Too much color is a defect.** He describes the brand keepers he trained: "Hey, I wouldn't use that much color here. Hey, I would make this more minimal." and "Hey, this is not monochrome enough." Others now say "it's not dark enough" and "too much color." ([podcast 49:00-49:50](https://www.youtube.com/watch?v=WxNGjChnRhE)). His 2024 taste prompt: "Utilize black and white geometric shapes inspired by brutalist architecture, interwoven with elements of Swiss design typography and the Bauhaus style." ([Indent](https://web.archive.org/web/20241209202918/https://indent.com/blog/tasting-notes-from-vercel-evil-rabbit)).
 
-3. **But he does not want people to copy the black-and-white look as a trend.** "we turned the internet black and white, dithering, particles, ASCII everywhere. Maybe it's time to step into the light." ([X, 2026-04-07](https://x.com/evilrabbit_/status/2041615578922938484)). Inference: in a review he will ask "what is your idea?" before he praises a monochrome screen.
+3. **But he does not want people to copy the black-and-white look as a trend.** "we turned the internet black and white, dithering, particles, ASCII everywhere. Maybe it’s time to step into the light." ([X, 2026-04-07](https://x.com/evilrabbit_/status/2041615578922938484)). Inference: in a review he will ask what the idea is before he praises a monochrome screen.
 
 4. **Remove structure until the main task is fast.** Popcorn Time: "the first thing I did was I killed the sidebar." He kept "the essence of the app" so that "in less than three clicks, you pick a category, you select the movie, and you were watching the movie." ([podcast 9:51-10:10](https://www.youtube.com/watch?v=WxNGjChnRhE)). About Vercel's new sidebar: "everybody is now moving to cybars [sidebars]. Not that happy." ([podcast 12:53](https://www.youtube.com/watch?v=WxNGjChnRhE)).
 
@@ -75,7 +75,7 @@ Authorship notes (do not overstate his part):
 
 8. **Usability, accessibility and speed come before aesthetics.** "design should always prioritize user experience over aesthetics" and "I place a strong emphasis on accessibility in design, ensuring that digital products are usable by everyone." Also: "a positive user experience requires a fast product that reacts at the speed of user interaction" ([Indent](https://web.archive.org/web/20241209202918/https://indent.com/blog/tasting-notes-from-vercel-evil-rabbit)).
 
-9. **A brand is every detail, not the logo.** "Building a brand is everything you do. How your product feels, how you talk, how you treat people, and how much you care about the details." ([X, 2026-09-26](https://x.com/evilrabbit_/status/2103985074173821187)). He also distrusts polish that has no purpose: "today's design world celebrates tiny micro-interactions more than meaningful UX and UI innovations." ([X, 2026-06-16](https://x.com/evilrabbit_/status/2066937291717874106)).
+9. **A brand is every detail, not the logo.** "Building a brand is everything you do. How your product feels, how you talk, how you treat people, and how much you care about the details." ([X, 2026-09-26](https://x.com/evilrabbit_/status/2103985074173821187)). He also distrusts polish that has no purpose: "today’s design world celebrates tiny micro-interactions more than meaningful UX and UI innovations." ([X, 2026-06-16](https://x.com/evilrabbit_/status/2066937291717874106)).
 
 10. **Few ingredients, with Swiss grid roots.** "You can create something incredible with only a few ingredients and a simple technique." His books include *Grid Systems in Graphic Design*. His influences include Josef Müller-Brockmann, David Carson and Jony Ive ([Indent](https://web.archive.org/web/20241209202918/https://indent.com/blog/tasting-notes-from-vercel-evil-rabbit)).
 
@@ -84,7 +84,7 @@ Authorship notes (do not overstate his part):
 ## 3. Visual traits of his shipped work (verifiable)
 
 Brand marks
-- The Vercel symbol is a solid triangle. It "can be used as a Unicode symbol (▲ U+25B2)". The clear space around the logo "is defined by the height of our symbol" ([Geist brands](https://vercel.com/geist/brands)). He uses ▲ as a text glyph in posts ("▲ Geist Pixel is now available on Google Fonts.").
+- The Vercel symbol is a solid triangle. It "can be used as a Unicode symbol (▲ U+25B2)". The clear space around the logo "is defined by the height of our symbol" ([Geist brands](https://vercel.com/geist/brands)). He uses ▲ as a text glyph in posts ("▲ Geist Pixel is now available on Google Fonts.", [X](https://x.com/evilrabbit_/status/2073883327958863933)).
 - The ZEIT triangle was "simplified" for Vercel in 2020 ([blog](https://vercel.com/blog/zeit-is-now-vercel)). Vercel launched a website with only the triangle and no wordmark. He says: "we did that in purpose because we wanted people to remember, you know, that the triangle is [Vercel]" ([podcast 19:53](https://www.youtube.com/watch?v=WxNGjChnRhE)).
 - ZEIT brand: geometric shapes, one per product. The triangle stood for time ("Zeit"). "We use geometrical shapes to represent our, you know, original products." ([podcast 21:16](https://www.youtube.com/watch?v=WxNGjChnRhE)). In the early days he posted the triangle almost every day "with a different texture different treatment" ([podcast 19:00](https://www.youtube.com/watch?v=WxNGjChnRhE)). So the treatment changes, but the shape stays the same.
 
@@ -105,11 +105,11 @@ Geometry, grid, density
 - Lines are hairlines. Lifeline is one 1px rail (`h-px` / `w-px`) with markers on it. It is horizontal and moves with scroll on desktop, and it is vertical on mobile ([README](https://github.com/evilrabbit/lifeline)).
 - His portfolio is one column (`max-w-[700px]`) with generous vertical rhythm (`mb-12`, `my-12`) and `rounded-lg` cards ([page.tsx](https://github.com/evilrabbit/main/blob/main/app/page.tsx)).
 - Early ZEIT site: "brutalist like it was monospace font you know the terminal" ([podcast 20:44](https://www.youtube.com/watch?v=WxNGjChnRhE)). The first billboard: "The very first billboard was a terminal command to install our AI package" ([podcast 22:53](https://www.youtube.com/watch?v=WxNGjChnRhE)).
-- Current Vercel marketing uses a visible grid with guide lines. Geist docs call the grid "A huge part of the new Vercel aesthetic." ([Geist intro](https://vercel.com/geist/introduction)). This is Vercel documentation. It does not name him.
+- Current Vercel marketing uses a visible grid with guide lines. In the first pass, the Geist intro page called the grid a huge part of the new Vercel aesthetic. On 2026-11-26 that line is not on the page ([Geist intro](https://vercel.com/geist/introduction)). This is Vercel documentation. It does not name him.
 
 Iconography
-- His icon work is mostly brand marks: the ▲ and the shapes for ZEIT products, Hyper app icons ([vercel/hyper#3466](https://github.com/vercel/hyper/pull/3466), 2019), and the "Vercel badge" ([next.js#15946](https://github.com/vercel/next.js/pull/15946), 2020).
-- Lifeline uses `lucide-react` for UI icons, so he did not draw a custom icon set for it. The Geist icon set ("Icon set tailored for developer tools", [vercel.com/geist](https://vercel.com/geist/introduction)) does not credit him. Do not say he made it.
+- His icon work is mostly brand marks: the ▲ and the shapes for ZEIT products, Hyper app icons ([vercel/hyper#3466](https://github.com/vercel/hyper/pull/3466), 2019), and the Vercel badge ("Improve Vercel's badge", [next.js#15946](https://github.com/vercel/next.js/pull/15946), 2020).
+- Lifeline uses `lucide-react` for UI icons, so he did not draw a custom icon set for it. The Geist icon set ([vercel.com/geist](https://vercel.com/geist/introduction)) does not credit him. Do not say he made it.
 
 Motion
 - His own motion is small and quiet. Lifeline draws its rail with `scaleX` and fades markers in from 6px below. Color and opacity transitions take 300ms. Images and media appear on hover ([globals.css](https://github.com/evilrabbit/lifeline/blob/main/app/globals.css)). His portfolio: a 0.5s ease-out fade with a 10px rise.
@@ -158,7 +158,7 @@ Verbatim examples:
 - "Hey, this cannot go out. This is not it's not speaking [Vercel]. Hey, this is not monochrome enough." ([podcast 49:27](https://www.youtube.com/watch?v=WxNGjChnRhE))
 - "Hey, I wouldn't use that much color here. Hey, I would make this more minimal." ([podcast 49:02](https://www.youtube.com/watch?v=WxNGjChnRhE))
 - "Let's start with the things that you hate and then we go from there." (how he asked the community for feedback, [podcast 24:02](https://www.youtube.com/watch?v=WxNGjChnRhE))
-- "Building a brand goes far beyond designing a logo. But you're not ready for that conversation." ([X, 2026-09-26](https://x.com/evilrabbit_/status/2103971178159472724))
+- "Building a brand goes far beyond designing a logo. But you’re not ready for that conversation." ([X, 2026-09-26](https://x.com/evilrabbit_/status/2103971178159472724))
 - "Everybody can cook. Some of us just happened to spend the last decade serving triangles." ([X, 2026-07-01](https://x.com/evilrabbit_/status/2072379336817021409))
 - "From a branding perspective, this is the right move. No need for a new icon. Just one X to rule them all." ([X, 2026-10-10](https://x.com/evilrabbit_/status/2109000223041499421))
 - "Sick brand work." ([X, 2026-05-29](https://x.com/evilrabbit_/status/2060196367444967894)) / "Apple style is unmatched." ([X, 2026-07-05](https://x.com/evilrabbit_/status/2073771472867201448))
@@ -186,7 +186,7 @@ Inference for the persona voice: short, direct and positive. Give a clear verdic
 ## 7. Related Vercel material (attribution)
 
 - **Web Interface Guidelines** ([vercel.com/design/guidelines](https://vercel.com/design/guidelines), [vercel-labs/web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines)): John Pham made the first commit on 2025-09-10 and has 43 of about 60 commits. Evil Rabbit is not a contributor. Rauno Freiberg had published an earlier list with the same name (interfaces.rauno.me). Do not credit it to Evil Rabbit. Rules that matter for visual review: "Optical alignment.", "Deliberate alignment.", "Balance contrast in lockups.", "Layered shadows.", "Crisp borders.", "Nested radii.", "Hue consistency.", "Interactions increase contrast.", "Tabular numbers for comparisons.", "Redundant status cues."
-- **Geist design system** ([vercel.com/geist](https://vercel.com/geist/introduction)): Vercel docs. No named author. Color rules: "Gray for text, icons, fills, borders, and dividers by default." "Background 2 should be used sparingly". "Draw each border once". Materials: radius 6px for base surfaces, 12px for menus and modals, 16px for fullscreen. "Favor the lowest elevation that still reads as elevated against its background". Grid: "Don't nest Grids more than one level".
+- **Geist design system** ([vercel.com/geist](https://vercel.com/geist/introduction)): Vercel docs. No named author. Color rules ([colors](https://vercel.com/geist/colors)): "Gray for text, icons, fills, borders, and dividers by default." "Background 2 should be used sparingly". "Draw each border once". Materials ([materials](https://vercel.com/geist/materials)): radius 6px for base surfaces, 12px for menus and modals, 16px for fullscreen. "Favor the lowest elevation that still reads as elevated against its background". Grid ([grid](https://vercel.com/geist/grid)): "Don’t nest Grids more than one level".
 - **"Teaching agents product design at Vercel"** ([blog, 2026-06-25](https://vercel.com/blog/teaching-agents-product-design-at-vercel)) is by John Phamous, not by Evil Rabbit. It has an operating contract ("Use evidence, not taste.", "Decide before decorating."). It is institutional material.
 
 ---
@@ -235,3 +235,64 @@ Source: 87 of his own X posts, 2026-08-11 to 2026-11-03, read through the fxtwit
 - Deimos, 2026-11-03: "I asked my agent to build a collection of our favorite designers, called Deimos." (https://x.com/evilrabbit_/status/2117459591508427009). The page uses three faces of one family: Geist Sans, Geist Mono, and Geist Serif as the display face. Its tokens set `--accent: var(--fg)`, and the only hues are status colors (support, refute, unsure, info). Inference from the CSS, not his words: the accent can be the text color, and status hues are not accents.
 - Geist Serif: "Introducing Geist Serif" (https://x.com/evilrabbit_/status/2116186171424563665)
 - Pace: "We gotta slow down a bit and focus more on ourselves and the work we want to put into the world." (https://x.com/evilrabbit_/status/2105145680654451127)
+
+---
+
+## Update 2026-11-26: last-year refresh
+
+Sources added in this pass:
+- X: 329 of his own posts, 2026-06-22 to 2026-11-25, from 42 fxtwitter timeline pages (retweets filtered out on `author.screen_name`). The timeline API stops at 2026-06-22 and does not return his replies to other people. I read 6 older posts (2026-04-27 to 2026-05-31) one by one after a web search found their ids.
+- GitHub: `commenter:evilrabbit` since 2025-11-26 gives 3 threads and 2 comments by him. `reviewed-by:evilrabbit` gives 0. `author:evilrabbit` gives 8 PRs (all his own repos or his own changes). Commits: 62 in evilrabbit/main and 33 in evilrabbit/lifeline since 2025-11-26, and 1 in evilrabbit/topper-venom-high (2026-11-08).
+- Bluesky (evilrabbit.bsky.social): no posts after 2024-11-14. HN: no comments.
+
+**Agent-written commits.** 58 of the last 60 commits in evilrabbit/main and the Lifeline commits that I read end with "Co-Authored-By: Claude Fable 5". Their text is agent-written. Use them as evidence of what he chose to ship, not of his wording. Each quote from them below is marked "(agent-written)".
+
+### Public critiques (the closest thing to his reviews)
+
+- **X Work Experience, 2026-11-25.** His only multi-point critique of someone else's product change in the year: "The new 𝕏 Work Experience feature still needs a lot of work. Location shouldn’t be a free-text field with no formatting. Companies shouldn’t be missing from the dropdown just because they don’t pay for an Org Badge. Overall, it feels cluttered." ([X](https://x.com/evilrabbit_/status/2125496196773081091), with a screen video). Three findings: data with a known shape shown as raw text, a choice list that is incomplete, and clutter.
+- **One mark, not a new icon, 2026-10-10.** The image is the @SpaceXSI profile, which uses the SpaceX X mark. He wrote: "From a branding perspective, this is the right move. No need for a new icon. Just one X to rule them all." ([X](https://x.com/evilrabbit_/status/2109000223041499421)). Inference: a new product under a parent brand reuses the parent mark.
+- **Back to basics, 2026-11-25.** He quoted Rauno Freiberg's list ("I will not use progressive blur.", "I will not cause layout shift.", "I will not make glass liquid.", "I will not not test mobile.", "I will not ship junk.") and wrote: "In this new era where everything feels like fireworks, reconnecting with the essence of what we do as designers is more important than ever." and "Let's go back to basics." ([X](https://x.com/evilrabbit_/status/2125716853142298848)). The list is Rauno's words. He endorses it.
+- **Agent output needs a pass, 2026-11-11.** About a landing page that an agent made in one shot: "Nota: La landing page es bastante `slop` pero la generó de una." (my translation: the landing page is quite slop, but it made it in one go) ([X](https://x.com/evilrabbit_/status/2120607358506447253)).
+- **Layout regret, 2026-10-01.** "Didn’t realize how much I missed the previous profile layout." ([X](https://x.com/evilrabbit_/status/2105507461491036422)).
+- **Praise, one line each:** "Opencode is insanely good, and beautifully designed." ([X, 2026-04-27](https://x.com/evilrabbit_/status/2048802163921682461)); "The spot UV coating effect is such a nice detail." ([X, 2026-11-03](https://x.com/evilrabbit_/status/2117462327390097661)); "Love how all the article copies fan out here." ([X, 2026-11-03](https://x.com/evilrabbit_/status/2117532291048276477)); "Insane design work by @ceciliorz 🔥" ([X, 2026-11-25](https://x.com/evilrabbit_/status/2125738502436557169)).
+- **Exploration that does not ship is fine:** "It wasn’t selected, but it was definitely worth exploring." ([X, 2026-07-30](https://x.com/evilrabbit_/status/2082895357172703484)).
+- **Credit must be exact.** On the Geist Pixel Google Fonts PR: "Guillermo Rauch from the Vercel team can stay. But Mateo Zaragoza, José Rago, Facundo Santana were not involved in this version." ([geist-font#226](https://github.com/vercel/geist-font/pull/226#issuecomment-4556003356)).
+
+### What he shipped (his decisions, agent-written text)
+
+- Lifeline: "The rabbit favicon — every icon asset was a v0 scaffold leftover" (agent-written, [4ccc3e1](https://github.com/evilrabbit/lifeline/commit/4ccc3e1)). The body: "favicon.ico, apple-icon.png, and even icon.svg carried the v0 mark." (agent-written).
+- Lifeline: "Typeset the timeline in Geist instead of inheriting font-sans" (agent-written, [9d81ca8](https://github.com/evilrabbit/lifeline/commit/9d81ca8)). The body: "That is circular, so it resolves to the browser's serif and every consumer's timeline came out in Times." (agent-written).
+- Lifeline: "Footer command: npx in gray, the command in black" (agent-written, [fef9dd9](https://github.com/evilrabbit/lifeline/commit/fef9dd9)). Also "Landing page: click-to-copy install command" ([d68855e](https://github.com/evilrabbit/lifeline/commit/d68855e)).
+- Lifeline: he merged "Snap resting transforms to the device pixel grid" from dannykeane ([lifeline#2](https://github.com/evilrabbit/lifeline/pull/2)) with no comment.
+- Portfolio: "Keep the event image icon glued to the last word" (agent-written). The body: "near the column edge it wrapped onto a line of its own." (agent-written). Also "Unify all theme transitions on one 300ms clock" and "Keep iOS scroll alive around the lightbox; warm event posters" (agent-written, [evilrabbit/main commits](https://github.com/evilrabbit/main/commits/main)). Inference: he checks the phone, both themes, and line wraps by hand.
+
+### Changes of mind and nuance
+
+- Monochrome stays his taste for UI, not a rule for all work. His image prompt for a 1980s illustration asks for "vibrant saturated colors" and "No empty space; every area contains meaningful visual information." ([X, 2026-05-31](https://x.com/evilrabbit_/status/2061209620874764564)). That is a genre brief, not UI. The seat keeps the line that monochrome is taste, not a rule.
+- No standard in SKILL.md is contradicted by the last year.
+
+### Other updates
+
+- New work: "I started building my own personal coding tool called `Evil Code`" ([X, 2026-11-23](https://x.com/evilrabbit_/status/2124901878412763643)); a new project with shadcn, shuding and matiNotFound ([X, 2026-11-17](https://x.com/evilrabbit_/status/2122738049041985568)); a Topper Venom High II landing page with a colorway editor (evilrabbit/topper-venom-high, 2026-11-08).
+- Talks booked: React Miami 2027 ([X](https://x.com/evilrabbit_/status/2125272224487952528)) and Tokyo Design Forum, Feb 17-19 2027 ([X](https://x.com/evilrabbit_/status/2125683789024366654)). No transcripts yet.
+
+### Replay test
+
+Skipped. The last year has only 1 public critique with 2 or more substantive points (X Work Experience). The brief asks for 3 or more cases. He left no GitHub review text.
+
+### SKILL.md changes from this pass
+
+- Method: look at phone width and both themes (Rauno list endorsement; Lifeline and portfolio commits).
+- Standard 3: no clutter, and the real command in mono with copy on developer surfaces (X Work Experience "feels cluttered"; Lifeline footer command and click-to-copy).
+- Standard 4, new: structured values look structured, and choice lists are complete (X Work Experience).
+- Standard 8, new: one mark (SpaceXSI post).
+- Standard 9: progressive blur added (Rauno list endorsement).
+- Standard 12 and flag on sight: a human pass on generated UI, and scaffold leftovers ("slop" post; Lifeline favicon and font commits).
+- Flag on sight: an inline icon that wraps alone (portfolio commit).
+- No standard removed.
+
+### Gaps that stay open
+
+- X posts from 2025-11-26 to 2026-06-21: the fxtwitter timeline stops at 2026-06-22. Only posts found by web search were read.
+- His replies to other people on X: the timeline API does not return them.
+- The Dive Club podcast quotes were not checked again in this pass: the YouTube captions cannot be fetched with curl alone.

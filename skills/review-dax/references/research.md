@@ -1,8 +1,8 @@
 # Dax Raad (thdxr): code-review research
 
-Research date: 2026-10-30. Weighting: Nov 2025 to Oct 2026 highest. Older 2025 comments are used only for his voice and for rules that are still in the repo docs.
+Research date: 2026-10-30, refreshed 2026-11-26 (see the last section). Weighting: Nov 2025 to Nov 2026 highest. Older 2025 comments are used only for his voice and for rules that are still in the repo docs.
 Repo: `sst/opencode` now redirects to `anomalyco/opencode` (default branch `dev`). All opencode links use `anomalyco/opencode`.
-Main corpus: his comments on about 470 opencode PRs (conversation comments, reviews, inline comments, pulled with `gh api` and filtered by `user.login == thdxr`), his commits, the repo docs and lint config, his X posts (text pulled through the fxtwitter API), and two 2026 podcasts.
+Main corpus: his comments on about 470 opencode PRs (refresh 2026-11-26: 446 comments on 432 PRs by other authors, 2025-11-26 to 2026-11-26, 16 repos) (conversation comments, reviews, inline comments, pulled with `gh api` and filtered by `user.login == thdxr`), his commits, the repo docs and lint config, his X posts (text pulled through the fxtwitter API), and two 2026 podcasts.
 Every quote is verbatim, with his original lowercase and typos. "Inference" marks my own reading.
 
 Link key: `#N c` = conversation comment (`#issuecomment-ID`), `#N d` = inline diff comment (`#discussion_rID`), `#N r` = review.
@@ -86,12 +86,12 @@ Source: [`AGENTS.md` on `dev`](https://github.com/anomalyco/opencode/blob/dev/AG
 **Branches and titles:** "Use a short branch name of at most three words, separated by hyphens." He added this rule on 2026-06-10 ("docs: add branch naming guidance"). PR titles use `type(scope): summary`.
 
 **Rules you recalled, verified:**
-- "avoid else": present (quoted above).
-- "avoid let": present as "Prefer `const` over `let`". The older text was blunter: "We don't like `let` statements, especially combined with if/else statements." ([old STYLE_GUIDE.md](https://github.com/anomalyco/opencode/blob/c86c2acf4/STYLE_GUIDE.md), removed 2026-01-25 by rekram1-node).
-- "avoid try/catch": present.
-- **"single word variable names": REMOVED.** It was "Prefer single word variable names where possible", plus a block "THIS RULE IS MANDATORY FOR AGENT WRITTEN CODE." with "Good short names to prefer: `pid`, `cfg`, `err`, `opts`, `dir`, `root`, `child`, `state`, `timeout`." ([AGENTS.md at 3ebebe0](https://github.com/anomalyco/opencode/blob/3ebebe0a96de5ec4757de12a21cb9f933e0fbba0/AGENTS.md)). Kit Langton deleted it on 2026-04-15 in PR #22670 ([commit 672ee28](https://github.com/anomalyco/opencode/commit/672ee28635f471c5fcdc7e77c518d4465678d786)). Inference: the code base still uses short names a lot, but it is no longer a written rule. Do not put it in the persona as a current rule.
+- *avoid else*: present (quoted above).
+- *avoid let*: present as "Prefer `const` over `let`". The older text was blunter: "We don't like `let` statements, especially combined with if/else statements." ([old STYLE_GUIDE.md](https://github.com/anomalyco/opencode/blob/c86c2acf4/STYLE_GUIDE.md), removed 2026-01-25 by rekram1-node).
+- *avoid try/catch*: present.
+- ***single word variable names*: REMOVED.** It was "Prefer single word variable names where possible", plus a block "THIS RULE IS MANDATORY FOR AGENT WRITTEN CODE." with "Good short names to prefer: `pid`, `cfg`, `err`, `opts`, `dir`, `root`, `child`, `state`, `timeout`." ([AGENTS.md at 3ebebe0](https://github.com/anomalyco/opencode/blob/3ebebe0a96de5ec4757de12a21cb9f933e0fbba0/AGENTS.md)). Kit Langton deleted it on 2026-04-15 in PR #22670 ([commit 672ee28](https://github.com/anomalyco/opencode/commit/672ee28635f471c5fcdc7e77c518d4465678d786)). Inference: the code base still uses short names a lot, but it is no longer a written rule. Do not put it in the persona as a current rule.
 
-**Rules turned into lint (the "make the review a constraint" pattern).**
+**Rules turned into lint (the pattern: make the review a constraint).**
 - ast-grep rules in [`script/ast-grep/rules`](https://github.com/anomalyco/opencode/tree/dev/script/ast-grep/rules), all `severity: error`: `no-import-alias`, `no-star-import`, `no-drizzle-column-name`, `no-json-parse-cast` ("Prefer Effect Schema JSON decoding over JSON.parse casts."), `no-effect-die-string` ("die with `new Error(...)`."), `no-nested-effect-service-yield`. Kit Langton added the Effect lint infrastructure (2026-07-03).
 - [`.oxlintrc.json`](https://github.com/anomalyco/opencode/blob/dev/.oxlintrc.json) loads an `anti-slop` plugin (vendored from `dmmulroy/anti-slop`) for the GUI packages: `no-object-parameters`, `no-runtime-typeof`, `no-unknown-returns`, `no-chained-type-assertions`, `require-safety-comment-for-type-assertion`, `no-module-mocking`, and others, at `warn`. Hona added it. It also bans `Reflect` globally.
 - The [`/rmslop` command](https://github.com/anomalyco/opencode/blob/dev/.opencode/command/rmslop.md) lists what the team calls slop: "Extra comments that a human wouldn't add", "Extra defensive checks or try/catch blocks that are abnormal for that area of the codebase", "Casts to any to get around type issues", "Unnecessary emoji usage".
@@ -196,7 +196,7 @@ Agent-written style on his account (since about May 2026): full sentences, a bul
 11. Ask for proof in the real artifact: the compiled binary, the real UI, a reactive update, a test that fails without the fix.
 12. Check names against the rest of the code base (`projectID`, not `projectId`).
 13. After a refactor, check that permission and safety checks still run somewhere.
-14. Ask "will users understand this behavior?" A clever but surprising behavior is a defect.
+14. Ask whether users will understand the behavior. A clever but surprising behavior is a defect.
 15. Prefer platform and runtime APIs (Bun, Effect) and existing internal utilities over new dependencies.
 16. Turn repeated review comments into lint rules or written rules (opencode does this with ast-grep, oxlint, and AGENTS.md).
 17. Keep the PR description short and in the author's own words. If it cannot be short, the PR is too big.
@@ -205,7 +205,7 @@ Agent-written style on his account (since about May 2026): full sentences, a bul
 
 ## Other opencode reviewers worth noting
 
-- **Aiden Cline (rekram1-node)** has the strongest public review signal. Since 2025-11 he reviewed about 224 opencode PRs (Dax: about 9) and commented on 1000+ (search limit). Themes: scope, "not necessary", MVP first, no new task-tool features, models.dev as the source of truth, performance of provider calls, and no default UI changes.
+- **Aiden Cline (rekram1-node)** has the strongest public review signal. Since 2025-11 he reviewed about 224 opencode PRs (Dax: about 9) and commented on 1000+ (search limit). Themes: scope, changes that are not necessary, MVP first, no new task-tool features, models.dev as the source of truth, performance of provider calls, and no default UI changes.
   - "Let's try to stay scoped to what we need to do to get mvp working" ([#7156 d](https://github.com/anomalyco/opencode/pull/7156#discussion_r2729929688))
   - "I don't want to introduce new things to task tool" ([#7156 d](https://github.com/anomalyco/opencode/pull/7156#discussion_r2729939419))
   - "this pr has so many unrelated changes, i thought it'd be a 2 line pr?" ([#20467 c](https://github.com/anomalyco/opencode/pull/20467#issuecomment-4272787310))
@@ -270,3 +270,53 @@ Source: 250 of his own X posts, 2026-10-06 to 2026-11-03, read through the fxtwi
 - Dependencies with their own runtime: "it brings in webasm complexity + forces worker threads + serialization of values back and forth" (https://x.com/thdxr/status/2108579049429942718)
 - Not adopted: agent-owned apps where the team judges only the built app ("it's a repo none of us have looked it", https://x.com/thdxr/status/2107690704956760393). It applies only to small utility apps.
 - "i'm gonna remove the plugin system in opencode3" (https://x.com/thdxr/status/2107902855092883496) is a joke. Plugins came to the desktop app on 2026-10-27 (https://x.com/thdxr/status/2115047360417960154).
+
+---
+
+## Update 2026-11-26: last-year refresh, Effect check, replay
+
+Sources added (2025-11-26 to 2026-11-26): GitHub GraphQL search `is:pr commenter:thdxr -author:thdxr` by month gave 446 of his comments (conversation, review bodies, inline) on 432 PRs in 16 repos (385 in `anomalyco/opencode`). 340 are the one V1-to-V2 bot close, and about 60 others are agent-written. Only about 25 are hand-written review text, and most of those were already in this file. Formal reviews by him on PRs of other authors: 40 (search `reviewed-by:thdxr`), almost all empty approvals. Also: 717 of his X posts (2026-09-11 to 2026-11-26, fxtwitter timeline; 293 since 2026-10-30), 8 HN comments, his 100 newest opencode commits (2026-10-30 to 11-25), and `AGENTS.md` on `dev` as of 2026-11-26. Bluesky (`thdxr.com`) mirrors his X posts, so I did not count it.
+
+**Gap that stays open:** hand-written code review from him in the last year is thin. On 2025-12 to 2026-03 he writes one or two short lines per PR. From about May 2026 the account's PR text is agent-written. No `sst/*` repo PR in the last year has review text from him.
+
+### Did the move to Effect change his style rules?
+
+No. All the general style lines quoted above are still in [`AGENTS.md` on `dev`](https://github.com/anomalyco/opencode/blob/dev/AGENTS.md) word for word on 2026-11-26 (no `try`/`catch`, no `any`, no `else`, `const`, no destructuring, no import aliases or star imports, inference, inline single-use values). The Effect move added Effect-only lines next to them (bind services before calls, no `Effect` return from pure helpers, Schema JSON decoding, `die` with `new Error`). Those are Effect internals and go to the Effect council seats. Two lines got softer exceptions (team edits, not his):
+- Helpers: "Do not extract single-use helpers preemptively. Inline the logic at the call site unless the helper is reused, hides a genuinely complex boundary, or has a clear independent name that improves the caller." And "make the main function read as the happy path and move supporting details into small helpers below it." So the old seat rule to keep one function is not absolute: a named helper for a real concept is fine.
+- Validation: "Do not defensively revalidate values already guaranteed by a schema, constructor, or internal type."
+
+### Rule change: experimental flags became one feature-flag registry
+
+Kit Langton, 2026-11-05 ([commit 66b25c2](https://github.com/anomalyco/opencode/commit/66b25c2bfc39fe73d5da6ebb9a01f3eafbcaeb48), "feat(core): one registry for feature flags, on by default in dev builds"). `AGENTS.md`, section "Feature Flags":
+- "When you open a PR, decide whether the change needs a flag: new user-visible behavior, risky core changes, and anything not ready to release get one; fixes, refactors, docs and tests do not."
+- "Flags default to on in local and dev builds and off in releases"
+- "Ship a feature by deleting its flag and the checks that read it."
+- "New endpoints and new default behaviors start experimental." stays.
+
+He follows it: "feat(core): add flagged home folder memory workspace" ([commit 16bbbe6](https://github.com/anomalyco/opencode/commit/16bbbe635c0b992ec6fcccc4436286391e23f57a), 2026-11-20). In Hex, agent-written on his account: "To keep Hex simple for new users, unproven features now live in **Settings › Labs**, off by default." ([hex #216 c](https://github.com/anomalyco/hex/pull/216#issuecomment-6537989935), 2026-10-31). The cost of a flag, in his words: "noooo we left the new onboarding experience for hex behind a flag so everyone saw the old one" ([X, 2026-11-01](https://x.com/thdxr/status/2116977984531837183)). Inference: a rollout flag in the registry is not a new permanent config option. A permanent user setting still is.
+
+### Replay evidence (his words on the replay PRs)
+
+- **In-flight rewrite decides first.** "hey thanks for working on this - i'm actually currently mid refactor on a bunch of code where we call LLMs so we probably can't explicitly accept this PR (llm-centralization branch)" ([#5422 c](https://github.com/anomalyco/opencode/pull/5422#issuecomment-3647978270)). Same pattern: "also we're moving to fff so not sure if it's worth doing" ([#15339 c](https://github.com/anomalyco/opencode/pull/15339#issuecomment-3977555502)) and "hang onto this - we're reworking a bunch of permissions stuff" ([#5987 c](https://github.com/anomalyco/opencode/pull/5987#issuecomment-3684528497)).
+- **Pull the wins out of a big PR.** "could you lay out all the things you improved on top of what we have currently? then i can make sure those get included" ([#5422 c](https://github.com/anomalyco/opencode/pull/5422#issuecomment-3647978270)).
+- **A default flip breaks workflows, even for security.** "the reason this has not been flipped yet is for backwards compatibility - this will break all kinds of workflows currently and we will flip the behavior in a larger update" ([#9328 c](https://github.com/anomalyco/opencode/pull/9328#issuecomment-3766285890)). He also checks the premise against the current default: "the server no longer runs unless you explicitly turn it on" (same comment). And: "this change will be made by core team" (same comment).
+- **Let callers bring the policy.** Agent-written, his change: "`version` can now be either the existing exact string or a compatibility predicate. That lets callers bring whatever range logic they need without us baking npm semver parsing into the client." ([#42023 c](https://github.com/anomalyco/opencode/pull/42023#issuecomment-5267758052)). Compare "Kept the web search domain pretty dumb" ([#35558 c](https://github.com/anomalyco/opencode/pull/35558#issuecomment-5081822960)).
+- **A fix that extends a sentinel gets the sentinel removed.** Agent-written: "replaces the empty-key sentinel with explicit provider activation" ([#42509 c](https://github.com/anomalyco/opencode/pull/42509#issuecomment-5303121953)).
+
+### Other new evidence
+
+- Silent fallbacks: "some configs fell back to this unexpectedly which upset people so we removed it" ([HN, 2026-03-21](https://news.ycombinator.com/item?id=47466341)).
+- How he briefs agents: "be strict about scope when creating a task" and "ask for proof of work instead of a summary" ([X, 2026-11-06](https://x.com/thdxr/status/2118755687274532893)).
+- Outside PRs: "so they're almost always worse than sending the prompt ourselves" and "it's mostly useful for environments we cannot recreate" ([X, 2026-10-20](https://x.com/thdxr/status/2112538272601616551)). Spaceman, agent-written: "we don't take external pull requests on spaceman anymore — open an issue describing the bug or idea instead and our agents usually turn it around fast." ([spaceman #371 c](https://github.com/anomalyco/spaceman/pull/371#issuecomment-7156165285), 2026-11-25).
+- Rebase onto newer behavior, agent-written: "please keep the `url_schemes` filter when you rebase." and "`dev` broke today from untested merges" ([rune #2216 c](https://github.com/anomalyco/rune/pull/2216#issuecomment-7158133963), 2026-11-25). Duplicate work, agent-written: "closing, dev already has this" ([rune #2107 c](https://github.com/anomalyco/rune/pull/2107#issuecomment-7155145550), 2026-11-25).
+- Product position: "for 99% of decisions all of the options are valid. they just determine the position your product takes" ([X, 2026-10-29](https://x.com/thdxr/status/2115950385311395937)).
+- His newest commits keep deleting surfaces: "chore: remove posts site (#62180)", "chore(changelog): remove the retired changelog service (#62382)", "fix(tui): drop ttft from the assistant footer (#63759)" (2026-11-05 to 11-13).
+
+### Rules that the evidence no longer supports
+
+- The old seat rule to keep one function unless the code is reused, as an absolute: softened by the helper exception above.
+- Single-word names: removed 2026-04-15 (see above). A replay run still asked for them, so the seat now says so.
+
+### Replay log (2026-11-26)
+
+Blind runs of the seat on 5 PRs by other authors. Ground truth = the points in his comments linked above. Train: #5422 (2 of 3 hit; missed the in-flight rewrite), #15339 (1 of 2; missed "moving to fff"), #9328 (1 of 3; missed the default-is-off premise and the core-team call). Held out, before / after the edit: #42023 0 of 2 / 2 of 2, #42509 0 of 2 / 2 of 2. Caveat: both held-out lessons were already in this file before the replay (checklist items 18 and 20), so the held-out cases are not fully independent. One run asked for single-word names, a rule that was removed.
